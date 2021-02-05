@@ -277,6 +277,12 @@ The last three tests in wave 5 imply:
     - If the `Vendor` has no item that matches `their_priority` category, swapping does not happen, and it returns `False`
     - If `other` has no item that matches `my_priority` category, swapping does not happen, and it returns `False`
 
+### DRYing up the code
+
+The further reduce the amount of repeated code in your project, consider how `swap_best_by_category` and `swap_first_item` might be able to make use of `swap_items`. Is there a way that these methods could incorporate a call to `swap_items` into the body of these methods?
+
+Try it out and see if the tests still pass! If you can't get them to pass with this refactor, you can always return to the most recent working commit before you submit the project!
+
 ## Optional Enhancements
 
 Should a project be completed before submission, and there is a desire for optional enhancements, consider these ideas:
