@@ -204,6 +204,17 @@ The first test in wave 3 implies:
 - When we stringify an instance of `Item` using `str()`, it returns `"Hello World!"`
   - This implies `Item` overrides its stringify method
 
+The following XX tests in wave 3 imply:
+- Instances of `Vendor` have an instance method named `swap_items`
+  - It takes 3 arguments: 
+      1. an instance of another `Vendor`, representing the friend that the vendor is swapping with
+      2. an instance of an `Item` (`my_item`), representing the item this `Vendor` instance plans to give
+      3. an instance of an `Item` (`their_item`), representing the item the friend `Vendor` plans to give
+  - It removes the `my_item` from this `Vendor`'s inventory, and adds it to the friend's inventory
+  - It removes the `their_item` from the other `Vendor`'s inventory, and adds it to this `Vendor`'s inventory
+  - It returns `True`
+  - If this `Vendor`'s inventory is doesn't contain `my_item` or the friend's inventory doesn't contain `their_item`, the method returns `False`
+
 The remaining tests in wave 3 imply:
 
 - Instances of `Vendor` have an instance method named `swap_first_item`
@@ -228,11 +239,16 @@ The tests in Wave 4 imply there are three new modules with three new classes:
   - Has an attribute `category` that is `"Electronics"`
   - Its stringify method returns `"A gadget full of buttons and secrets."`
 
-- All three classes have an attribute called `condition`, which can be optionally provided in the initializer. The default value should be `0`.
+- All three classes and the Item class have an attribute called `condition`, which can be optionally provided in the initializer. The default value should be `0`.
 
-#### Hint: Importing Item
+- All three classes and the Item class have a method named `condition_description`, which should describe the condition in words based on the value, assuming they all range from 0 to 5. These can be basic descriptions (eg. 'mint', 'heavily used') but feel free to have fun with these (e.g. 'You probably want a glove for this one..."). The one requirement is that the `condition_description` for all three classes above have the same behavior.
 
-If you need to import the `Item` class into these modules, try this import line:
+#### Using inheritance
+
+Now the these three classes hold the same state and have the same behavior, this is a great opportunity to use inheritance! If you haven't already, go back and implement the `Clothing`, `Decor`, and `Electronics` classes so that they inherit from the `Item` class. This should eliminate repetition in your code and greatly reduce the total number of lines code in your program!
+##### Hint: Importing Item
+
+You'll need to refer to `Item` in order to declare it as a parent. To reference the `Item` class into these modules, try this import line:
 
 ```python
 from swap_meet.item import Item
