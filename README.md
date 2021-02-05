@@ -241,7 +241,7 @@ The tests in Wave 4 imply there are three new modules with three new classes:
 
 - All three classes and the Item class have an attribute called `condition`, which can be optionally provided in the initializer. The default value should be `0`.
 
-- All three classes and the Item class have a method named `condition_description`, which should describe the condition in words based on the value, assuming they all range from 0 to 5. These can be basic descriptions (eg. 'mint', 'heavily used') but feel free to have fun with these (e.g. 'You probably want a glove for this one..."). The one requirement is that the `condition_description` for all three classes above have the same behavior.
+- All three classes and the Item class have an instance method named `condition_description`, which should describe the condition in words based on the value, assuming they all range from 0 to 5. These can be basic descriptions (eg. 'mint', 'heavily used') but feel free to have fun with these (e.g. 'You probably want a glove for this one..."). The one requirement is that the `condition_description` for all three classes above have the same behavior.
 
 #### Using inheritance
 
