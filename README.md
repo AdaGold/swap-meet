@@ -215,13 +215,9 @@ The remaining XX tests in wave 3 imply:
   - It returns `True`
   - If this `Vendor`'s inventory is doesn't contain `my_item` or the friend's inventory doesn't contain `their_item`, the method returns `False`
 
-### Wave 4
 
 The tests in wave 4 imply:
 
-- Instances of `Vendor` have an instance method named `swap_first_item`
-  - It takes one argument: an instance of another `Vendor`, representing the friend that the vendor is swapping with
-  - This method considers the first item in the instance's `inventory`, and the first item in the friend's `inventory`
   - It removes the first item from its `inventory`, and adds the friend's first item
   - It removes the first item from the friend's `inventory`, and adds the instances first item
   - It returns `True`
@@ -242,47 +238,14 @@ The tests in Wave 5 imply there are three new modules with three new classes:
   - Its stringify method returns `"A gadget full of buttons and secrets."`
 
 - All three classes and the Item class have an attribute called `condition`, which can be optionally provided in the initializer. The default value should be `0`.
-
-- All three classes and the Item class have an instance method named `condition_description`, which should describe the condition in words based on the value, assuming they all range from 0 to 5. These can be basic descriptions (eg. 'mint', 'heavily used') but feel free to have fun with these (e.g. 'You probably want a glove for this one..."). The one requirement is that the `condition_description` for all three classes above have the same behavior.
-
 #### Using inheritance
 
 Now the these three classes hold the same state and have the same behavior, this is a great opportunity to use inheritance! If you haven't already, go back and implement the `Clothing`, `Decor`, and `Electronics` classes so that they inherit from the `Item` class. This should eliminate repetition in your code and greatly reduce the total number of lines code in your program!
 ##### Hint: Importing Item
 
 You'll need to refer to `Item` in order to declare it as a parent. To reference the `Item` class into these modules, try this import line:
-
-```python
-from swap_meet.item import Item
-```
-
-### Wave 6
-
-The first three tests in wave 5 imply:
-
-- `Vendor`s have a method named `get_best_by_category`, which will get the item with the best condition in a certain category
   - It takes one argument: a string that represents a category
-  - This method looks through the instance's `inventory` for the item with the highest `condition` and matching `category`
-    - It returns this item
-    - If there are no items in the `inventory` that match the category, it returns `None`
-    - It returns a single item even if there are duplicates (two or more of the same item with the same condition)
-
-The last three tests in wave 6 imply:
-
-- `Vendor`s have a method named `swap_best_by_category`, which will swap the best item of certain categories with another `Vendor`
-  - It takes in three arguments
-    - `other`, which represents another `Vendor` instance to trade with
     - `my_priority`, which represents a category that the `Vendor` wants to receive
-    - `their_priority`, which represents a category that `other` wants to receive
-  - The best item in my inventory that matches `their_priority` category is swapped with the best item in `other`'s inventory that matches `my_priority`
-    - It returns `True`
-    - If the `Vendor` has no item that matches `their_priority` category, swapping does not happen, and it returns `False`
-    - If `other` has no item that matches `my_priority` category, swapping does not happen, and it returns `False`
-
-### DRYing up the code
-
-The further reduce the amount of repeated code in your project, consider how `swap_best_by_category` and `swap_first_item` might be able to make use of `swap_items`. Is there a way that these methods could incorporate a call to `swap_items` into the body of these methods?
-
 Try it out and see if the tests still pass! If you can't get them to pass with this refactor, you can always return to the most recent working commit before you submit the project!
 
 ## Optional Enhancements

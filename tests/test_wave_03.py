@@ -2,7 +2,6 @@ import pytest
 from swap_meet.vendor import Vendor
 from swap_meet.item import Item
 
-
 def test_item_overrides_to_string():
     item = Item()
 
@@ -10,8 +9,7 @@ def test_item_overrides_to_string():
 
     assert stringified_item == "Hello World!"
 
-
-def test_swap_first_item_returns_true():
+def test_swap_item_returns_true():
     item_a = Item(category="clothing")
     item_b = Item(category="clothing")
     item_c = Item(category="clothing")
@@ -25,7 +23,7 @@ def test_swap_first_item_returns_true():
         inventory=[item_d, item_e]
     )
 
-    result = fatimah.swap_first_item(jolie)
+    result = fatimah.swap_item(jolie, item_b, item_d)
 
     assert len(fatimah.inventory) is 3
     assert item_a not in fatimah.inventory
@@ -35,42 +33,5 @@ def test_swap_first_item_returns_true():
     assert len(jolie.inventory) is 2
     assert item_d not in jolie.inventory
     assert item_e in jolie.inventory
-    assert item_a in jolie.inventory
+    assert item_b in jolie.inventory
     assert result is True
-
-
-def test_swap_first_item_from_my_empty_returns_false():
-    fatimah = Vendor(
-        inventory=[]
-    )
-
-    item_d = Item(category="electronics")
-    item_e = Item(category="decor")
-    jolie = Vendor(
-        inventory=[item_d, item_e]
-    )
-
-    result = fatimah.swap_first_item(jolie)
-
-    assert len(fatimah.inventory) is 0
-    assert len(jolie.inventory) is 2
-    assert result is False
-
-
-def test_swap_first_item_from_their_empty_returns_false():
-    item_a = Item(category="clothing")
-    item_b = Item(category="clothing")
-    item_c = Item(category="clothing")
-    fatimah = Vendor(
-        inventory=[item_a, item_b, item_c]
-    )
-
-    jolie = Vendor(
-        inventory=[]
-    )
-
-    result = fatimah.swap_first_item(jolie)
-
-    assert len(fatimah.inventory) is 3
-    assert len(jolie.inventory) is 0
-    assert result is False
