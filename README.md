@@ -291,19 +291,8 @@ Try it out and see if the tests still pass! If you can't get them to pass with t
 Should a project be completed before submission, and there is a desire for optional enhancements, consider these ideas:
 
 - Items have age
-
   - Add an `age` attribute to all Items
   - Implement a `Vendor` method named `swap_by_newest`, using any logic that seems appropriate
 
-- Make a method for each `Item` called `long_description`. This method returns a long description of the item, based on the condition of the item. They follow different rules for each class:
-  - Clothing
-    - if condition greater than `1.0`, return "Clothing is clothing"
-    - otherwise, return "Worn out, possibly fashionable, possibly extreme"
-  - Decor
-    - if condition greater than `4.0`, "Very good condition"
-    - if condition is between `3.0` and `4.0`, "Pretty good condition"
-    - if condition is between `2.0` and `3.0`, "Noticeable wear and tear"
-    - otherwise, "Fashionably rustic"
-  - Electronics
-    - if condition is greater than `4.0`, "Looks like it was just pulled out of the box for the first time!"
-    - otherwise, "Probably broken, but retro!"
+- Condition description incorporates category
+  - Update the strings returned by the `condition_description` method to incorporate the category the item. For example 'You probably want a glove for this one...' could be changed to 'You probably want a glove for this clothing...'
