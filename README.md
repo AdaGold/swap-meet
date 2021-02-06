@@ -254,13 +254,33 @@ If you need to import the `Item` class into these modules, try this import line:
 from swap_meet.item import Item
 ```
 
-### Wave 5
+### Wave 6
 
-The first three tests in wave 5 imply:
+The first three tests in wave 6 imply:
 
 - `Vendor`s have a method named `get_best_by_category`, which will get the item with the best condition in a certain category
   - It takes one argument: a string that represents a category
+  - This method looks through the instance's `inventory` for the item with the highest `condition` and matching `category`
+    - It returns this item
+    - If there are no items in the `inventory` that match the category, it returns `None`
+    - It returns a single item even if there are duplicates (two or more of the same item with the same condition)
+
+The last three tests in wave 5 imply:
+
+- `Vendor`s have a method named `swap_best_by_category`, which will swap the best item of certain categories with another `Vendor`
+  - It takes in three arguments
+    - `other`, which represents another `Vendor` instance to trade with
     - `my_priority`, which represents a category that the `Vendor` wants to receive
+    - `their_priority`, which represents a category that `other` wants to receive
+  - The best item in my inventory that matches `their_priority` category is swapped with the best item in `other`'s inventory that matches `my_priority`
+    - It returns `True`
+    - If the `Vendor` has no item that matches `their_priority` category, swapping does not happen, and it returns `False`
+    - If `other` has no item that matches `my_priority` category, swapping does not happen, and it returns `False`
+
+### DRYing up the code
+
+The further reduce the amount of repeated code in your project, consider how `swap_best_by_category` and `swap_first_item` might be able to make use of `swap_items`. Is there a way that these methods could incorporate a call to `swap_items` into the body of these methods?
+
 Try it out and see if the tests still pass! If you can't get them to pass with this refactor, you can always return to the most recent working commit before you submit the project!
 
 ## Optional Enhancements
