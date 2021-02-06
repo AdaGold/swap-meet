@@ -204,8 +204,8 @@ The first test in wave 3 implies:
 - When we stringify an instance of `Item` using `str()`, it returns `"Hello World!"`
   - This implies `Item` overrides its stringify method
 
-The remaining XX tests in wave 3 imply:
-- Instances of `Vendor` have an instance method named `swap_items`
+The remaining 5 tests in wave 3 imply:
+- Instances of `Vendor` have an instance method named `swap_item`
   - It takes 3 arguments: 
       1. an instance of another `Vendor`, representing the friend that the vendor is swapping with
       2. an instance of an `Item` (`my_item`), representing the item this `Vendor` instance plans to give
@@ -215,6 +215,7 @@ The remaining XX tests in wave 3 imply:
   - It returns `True`
   - If this `Vendor`'s inventory is doesn't contain `my_item` or the friend's inventory doesn't contain `their_item`, the method returns `False`
 
+### Wave 4
 
 The tests in wave 4 imply:
 
