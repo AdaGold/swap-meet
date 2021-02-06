@@ -204,7 +204,7 @@ The first test in wave 3 implies:
 - When we stringify an instance of `Item` using `str()`, it returns `"Hello World!"`
   - This implies `Item` overrides its stringify method
 
-The following XX tests in wave 3 imply:
+The remaining XX tests in wave 3 imply:
 - Instances of `Vendor` have an instance method named `swap_items`
   - It takes 3 arguments: 
       1. an instance of another `Vendor`, representing the friend that the vendor is swapping with
@@ -215,7 +215,9 @@ The following XX tests in wave 3 imply:
   - It returns `True`
   - If this `Vendor`'s inventory is doesn't contain `my_item` or the friend's inventory doesn't contain `their_item`, the method returns `False`
 
-The remaining tests in wave 3 imply:
+### Wave 4
+
+The tests in wave 4 imply:
 
 - Instances of `Vendor` have an instance method named `swap_first_item`
   - It takes one argument: an instance of another `Vendor`, representing the friend that the vendor is swapping with
@@ -225,9 +227,9 @@ The remaining tests in wave 3 imply:
   - It returns `True`
   - If either itself or the friend have an empty `inventory`, the method returns `False`
 
-### Wave 4
+### Wave 5
 
-The tests in Wave 4 imply there are three new modules with three new classes:
+The tests in Wave 5 imply there are three new modules with three new classes:
 
 - `Clothing`
   - Has an attribute `category` that is `"Clothing"`
@@ -254,7 +256,7 @@ You'll need to refer to `Item` in order to declare it as a parent. To reference 
 from swap_meet.item import Item
 ```
 
-### Wave 5
+### Wave 6
 
 The first three tests in wave 5 imply:
 
@@ -265,7 +267,7 @@ The first three tests in wave 5 imply:
     - If there are no items in the `inventory` that match the category, it returns `None`
     - It returns a single item even if there are duplicates (two or more of the same item with the same condition)
 
-The last three tests in wave 5 imply:
+The last three tests in wave 6 imply:
 
 - `Vendor`s have a method named `swap_best_by_category`, which will swap the best item of certain categories with another `Vendor`
   - It takes in three arguments
