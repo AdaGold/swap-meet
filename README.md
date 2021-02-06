@@ -239,12 +239,24 @@ The tests in Wave 5 imply there are three new modules with three new classes:
   - Its stringify method returns `"A gadget full of buttons and secrets."`
 
 - All three classes and the Item class have an attribute called `condition`, which can be optionally provided in the initializer. The default value should be `0`.
-#### Using inheritance
+#### Using Inheritance
 
-Now the these three classes hold the same state and have the same behavior, this is a great opportunity to use inheritance! If you haven't already, go back and implement the `Clothing`, `Decor`, and `Electronics` classes so that they inherit from the `Item` class. This should eliminate repetition in your code and greatly reduce the total number of lines code in your program!
-##### Hint: Importing Item
+Now, we may notice that these four classes hold the same types of state and have the same behavior. That makes this is a great opportunity to use inheritance! If you haven't already, go back and implement the Clothing, Decor, and Electronics classes so that they inherit from the Item class. This should eliminate repetition in your code and greatly reduce the total number of lines code in your program!
+
+#### Hint: Importing Item
 
 You'll need to refer to `Item` in order to declare it as a parent. To reference the `Item` class into these modules, try this import line:
+If you need to import the `Item` class into these modules, try this import line:
+
+```python
+from swap_meet.item import Item
+```
+
+### Wave 5
+
+The first three tests in wave 5 imply:
+
+- `Vendor`s have a method named `get_best_by_category`, which will get the item with the best condition in a certain category
   - It takes one argument: a string that represents a category
     - `my_priority`, which represents a category that the `Vendor` wants to receive
 Try it out and see if the tests still pass! If you can't get them to pass with this refactor, you can always return to the most recent working commit before you submit the project!
