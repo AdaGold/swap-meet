@@ -241,9 +241,12 @@ The tests in Wave 5 imply there are three new modules with three new classes:
   - Its stringify method returns `"A gadget full of buttons and secrets."`
 
 - All three classes and the Item class have an attribute called `condition`, which can be optionally provided in the initializer. The default value should be `0`.
+
+- All three classes and the Item class have an instance method named `condition_description`, which should describe the condition in words based on the value, assuming they all range from 0 to 5. These can be basic descriptions (eg. 'mint', 'heavily used') but feel free to have fun with these (e.g. 'You probably want a glove for this one..."). The one requirement is that the `condition_description` for all three classes above have the same behavior.
+
 #### Using Inheritance
 
-Now, we may notice that these four classes hold the same types of state and have the same behavior. That makes this is a great opportunity to use inheritance! If you haven't already, go back and implement the Clothing, Decor, and Electronics classes so that they inherit from the Item class. This should eliminate repetition in your code and greatly reduce the total number of lines code in your program!
+Now, we may notice that these four classes hold the same types of state and have the same behavior. That makes this is a great opportunity to use inheritance! If you haven't already, go back and implement the `Clothing`, `Decor`, and `Electronics` classes so that they inherit from the `Item` class. This should eliminate repetition in your code and greatly reduce the total number of lines code in your program!
 
 #### Hint: Importing Item
 
