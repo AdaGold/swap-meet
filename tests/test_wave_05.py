@@ -40,11 +40,14 @@ def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type(
         Electronics(condition=5)
     ]
     five_condition_description = items[0].condition_description()
+    assert type(five_condition_description) == str
     for item in items:
         assert item.condition_description() == five_condition_description
 
-    item[0].condition = 1
+    items[0].condition = 1
     one_condition_description = items[0].condition_description()
+    assert type(one_condition_description) == str
+
     for item in items:
         item.condition = 1
         assert item.condition_description() == one_condition_description

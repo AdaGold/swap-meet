@@ -9,7 +9,7 @@ def test_item_overrides_to_string():
 
     assert stringified_item == "Hello World!"
 
-def test_swap_item_returns_true():
+def test_swap_items_returns_true():
     item_a = Item(category="clothing")
     item_b = Item(category="clothing")
     item_c = Item(category="clothing")
@@ -23,7 +23,7 @@ def test_swap_item_returns_true():
         inventory=[item_d, item_e]
     )
 
-    result = fatimah.swap_item(jolie, item_b, item_d)
+    result = fatimah.swap_items(jolie, item_b, item_d)
 
     assert len(fatimah.inventory) is 3
     assert item_b not in fatimah.inventory
@@ -36,7 +36,7 @@ def test_swap_item_returns_true():
     assert item_b in jolie.inventory
     assert result is True
 
-def test_swap_item_when_my_item_is_missing_returns_false():
+def test_swap_items_when_my_item_is_missing_returns_false():
     item_a = Item(category="clothing")
     item_b = Item(category="clothing")
     item_c = Item(category="clothing")
@@ -50,7 +50,7 @@ def test_swap_item_when_my_item_is_missing_returns_false():
         inventory=[item_d, item_e]
     )
 
-    result = fatimah.swap_item(jolie, item_e, item_d)
+    result = fatimah.swap_items(jolie, item_e, item_d)
 
     assert len(fatimah.inventory) is 3
     assert item_d not in fatimah.inventory
@@ -62,7 +62,7 @@ def test_swap_item_when_my_item_is_missing_returns_false():
     assert item_e in jolie.inventory
     assert result is False
 
-def test_swap_item_when_their_item_is_missing_returns_false():
+def test_swap_items_when_their_item_is_missing_returns_false():
     item_a = Item(category="clothing")
     item_b = Item(category="clothing")
     item_c = Item(category="clothing")
@@ -76,7 +76,7 @@ def test_swap_item_when_their_item_is_missing_returns_false():
         inventory=[item_d, item_e]
     )
 
-    result = fatimah.swap_item(jolie, item_b, item_c)
+    result = fatimah.swap_items(jolie, item_b, item_c)
 
     assert len(fatimah.inventory) is 3
     assert item_d not in fatimah.inventory
@@ -88,7 +88,7 @@ def test_swap_item_when_their_item_is_missing_returns_false():
     assert item_e in jolie.inventory
     assert result is False
 
-def test_swap_item_from_my_empty_returns_false():
+def test_swap_items_from_my_empty_returns_false():
     fatimah = Vendor(
         inventory=[]
     )
@@ -101,13 +101,13 @@ def test_swap_item_from_my_empty_returns_false():
 
     nobodys_item = Item(category="clothing")
 
-    result = fatimah.swap_item(jolie, nobodys_item, item_d)
+    result = fatimah.swap_items(jolie, nobodys_item, item_d)
 
     assert len(fatimah.inventory) is 0
     assert len(jolie.inventory) is 2
     assert result is False
 
-def test_swap_item_from_their_empty_returns_false():
+def test_swap_items_from_their_empty_returns_false():
     item_a = Item(category="clothing")
     item_b = Item(category="clothing")
     item_c = Item(category="clothing")
@@ -121,7 +121,7 @@ def test_swap_item_from_their_empty_returns_false():
 
     nobodys_item = Item(category="clothing")
 
-    result = fatimah.swap_item(jolie, item_b, nobodys_item)
+    result = fatimah.swap_items(jolie, item_b, nobodys_item)
 
     assert len(fatimah.inventory) is 3
     assert len(jolie.inventory) is 0

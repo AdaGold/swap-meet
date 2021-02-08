@@ -205,7 +205,7 @@ The first test in wave 3 implies:
   - This implies `Item` overrides its stringify method
 
 The remaining 5 tests in wave 3 imply:
-- Instances of `Vendor` have an instance method named `swap_item`
+- Instances of `Vendor` have an instance method named `swap_items`
   - It takes 3 arguments: 
       1. an instance of another `Vendor`, representing the friend that the vendor is swapping with
       2. an instance of an `Item` (`my_item`), representing the item this `Vendor` instance plans to give
@@ -248,7 +248,8 @@ The tests in Wave 5 imply there are three new modules with three new classes:
 
 Now, we may notice that these four classes hold the same types of state and have the same behavior. That makes this is a great opportunity to use inheritance! If you haven't already, go back and implement the `Clothing`, `Decor`, and `Electronics` classes so that they inherit from the `Item` class. This should eliminate repetition in your code and greatly reduce the total number of lines code in your program!
 
-#### Hint: Importing Item
+Now the these three classes hold the same state and have the same behavior, this is a great opportunity to use inheritance! If you haven't already, go back and implement the `Clothing`, `Decor`, and `Electronics` classes so that they inherit from the `Item` class. This should eliminate repetition in your code and greatly reduce the total number of lines code in your program!
+##### Hint: Importing Item
 
 You'll need to refer to `Item` in order to declare it as a parent. To reference the `Item` class into these modules, try this import line:
 If you need to import the `Item` class into these modules, try this import line:
