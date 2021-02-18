@@ -289,11 +289,8 @@ Try it out and see if the tests still pass! If you can't get them to pass with t
 
 ## Optional Enhancements
 
-Should a project be completed before submission, and there is a desire for optional enhancements, consider these ideas:
+Should a project be completed before submission, and there is a desire for optional enhancements, consider this idea:
 
 - Items have age
   - Add an `age` attribute to all Items
   - Implement a `Vendor` method named `swap_by_newest`, using any logic that seems appropriate
-
-- Condition description incorporates category
-  - Update the strings returned by the `condition_description` method to incorporate the category the item. For example 'You probably want a glove for this one...' could be changed to 'You probably want a glove for this clothing...'
