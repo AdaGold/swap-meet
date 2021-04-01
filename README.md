@@ -2,7 +2,6 @@
 
 ## Skills Assessed
 
-- Following directions and reading comprehension
 - Reading tests
 - Creating classes
   - Classes have attributes and instance methods
@@ -24,7 +23,7 @@ For this project, given some features that the vendors want, create a set of cla
 
 ## One-Time Project Setup
 
-Follow these directions once, a the beginning of your project:
+Follow these directions once, at the beginning of your project:
 
 1. Navigate to your projects folder named `projects`
 
@@ -74,7 +73,7 @@ Summary of one-time project setup:
 
 - [ ] `cd` into your `projects` folder
 - [ ] Clone the project onto your machine
-- [ ] `cd` into the `viewing-party` folder
+- [ ] `cd` into the `swap-meet` folder
 - [ ] Create the virtual environment `venv`
 - [ ] Activate the virtual environment `venv`
 - [ ] Install the dependences with `pip`
@@ -135,7 +134,7 @@ If you want to run all tests that exist in one file, use:
 $ pytest tests/test_file_name.py
 ```
 
-... where `test_file_name.py` is relpaced with the correct test file name.
+... where `test_file_name.py` is replaced with the correct test file name.
 
 If you want to see any `print` statements print to the console, add `-s` to the end of any `pytest` command:
 
@@ -160,7 +159,7 @@ At submission time, no matter where you are, submit the project via Learn.
 
 ## Project Directions
 
-This project is designed such that one could puzzle together how to implement this project without many directions.Being able to use tests to drive project completion is a skill that needs to be developed; programmers often take years to develop this skill competently.
+This project is designed such that one could puzzle together how to implement this project without many directions. Some teams and organizations like using a test-driven approach where the tests are written before the code, but in any case reading and understanding the purpose of a test can be an important skill to develop.
 
 When our test failures leave us confused and stuck, let's use the detailed project requirements below.
 
@@ -171,7 +170,7 @@ The first two tests in wave 1 imply:
 - There is a module (file) named `vendor.py` inside of the `swap_meet` package (folder)
 - Inside this module, there is a class named `Vendor`
 - Each `Vendor` will have an attribute named `inventory`, which is an empty list by default
-- When we create initialize an instance of `Vendor`, we can optionally pass in a list with the keyword argument `inventory`
+- When we initialize an instance of `Vendor`, we can optionally pass in and remember a list with the keyword argument `inventory`
 
 The remaining tests in wave 1 imply:
 
@@ -192,7 +191,7 @@ The first tests in wave 2 imply:
 
 - Inside this module, there is a class named `Item`
 - Each `Item` will have an attribute named `category`, which is an empty string by default
-- When we initialize an instance of `Item`, we can optionally pass in a string with the keyword argument `category`
+- When we initialize an instance of `Item`, we can optionally pass in and remember a string with the keyword argument `category`
 - Instances of `Vendor` have an instance method named `get_by_category`
   - It takes one argument: a string, representing a category
   - This method returns a list of `Item`s in the inventory with that category
@@ -206,7 +205,7 @@ The first test in wave 3 implies:
 
 The remaining 5 tests in wave 3 imply:
 - Instances of `Vendor` have an instance method named `swap_items`
-  - It takes 3 arguments: 
+  - It takes 3 arguments:
       1. an instance of another `Vendor`, representing the friend that the vendor is swapping with
       2. an instance of an `Item` (`my_item`), representing the item this `Vendor` instance plans to give
       3. an instance of an `Item` (`their_item`), representing the item the friend `Vendor` plans to give
@@ -221,8 +220,8 @@ The tests in wave 4 imply:
 - Instances of `Vendor` have an instance method named `swap_first_item`
   - It takes one argument: an instance of another `Vendor`, representing the friend that the vendor is swapping with
   - This method considers the first item in the instance's `inventory`, and the first item in the friend's `inventory`
-  - It removes the first item from its `inventory`, and adds the friend's first item
-  - It removes the first item from the friend's `inventory`, and adds the instances first item
+  - It removes the first item from the instance's `inventory`, and adds the friend's first item
+  - It removes the first item from the friend's `inventory`, and adds the instance's first item
   - It returns `True`
   - If either itself or the friend have an empty `inventory`, the method returns `False`
 
@@ -246,13 +245,11 @@ The tests in Wave 5 imply there are three new modules with three new classes:
 
 #### Using Inheritance
 
-Now, we may notice that these four classes hold the same types of state and have the same behavior. That makes this is a great opportunity to use inheritance! If you haven't already, go back and implement the `Clothing`, `Decor`, and `Electronics` classes so that they inherit from the `Item` class. This should eliminate repetition in your code and greatly reduce the total number of lines code in your program!
+Now, we may notice that these four classes hold the same types of state and have the same behavior. That makes this is a great opportunity to practice inheritance! If you haven't already, go back and implement the `Clothing`, `Decor`, and `Electronics` classes so that they inherit from the `Item` class. This should reduce repetition in your code and cut down the total number of lines code in your program.
 
-Now the these three classes hold the same state and have the same behavior, this is a great opportunity to use inheritance! If you haven't already, go back and implement the `Clothing`, `Decor`, and `Electronics` classes so that they inherit from the `Item` class. This should eliminate repetition in your code and greatly reduce the total number of lines code in your program!
 ##### Hint: Importing Item
 
 You'll need to refer to `Item` in order to declare it as a parent. To reference the `Item` class into these modules, try this import line:
-If you need to import the `Item` class into these modules, try this import line:
 
 ```python
 from swap_meet.item import Item
