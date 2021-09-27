@@ -2,8 +2,11 @@ from swap_meet.item import Item
 
 class Vendor:
     ''' '''
-    def __init__(self, inventory=[]):
-        self.inventory = inventory
+    def __init__(self, inventory=None):
+        if not inventory:
+            self.inventory = []
+        else:
+            self.inventory = inventory
 
     def add(self, inventory_item):
         ''' Add an item to instance inventory list. Returns
@@ -20,11 +23,16 @@ class Vendor:
         except ValueError:
             return False
 
-    def get_by_category(self, item_category):
-        '''Look up items by category, return matches.'''
-        return_list = []
-        if item_category in self.inventory:
-            return_list.append(item_category)
-            return return_list
-        else:
-            return return_list
+    def get_by_category(self, category):
+        '''Search Vendor's inventory for item category, return a list of
+        Item matches.'''
+        item_list = []
+        
+        # Loop through each item in instance's inventory list
+        for item in self.inventory:
+            # self.inventory => [<__main__.Item object at 0x10c302970>]
+            # If category name matches an existing item category
+            if category == item.category:
+                item_list.append(item)
+
+        return item_list
