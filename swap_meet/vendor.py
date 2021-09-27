@@ -1,3 +1,5 @@
+from swap_meet.item import Item
+
 class Vendor:
     ''' '''
     def __init__(self, inventory=[]):
@@ -17,3 +19,12 @@ class Vendor:
             return inventory_item
         except ValueError:
             return False
+
+    def get_by_category(self, item_category):
+        '''Look up items by category, return matches.'''
+        return_list = []
+        if item_category in self.inventory:
+            return_list.append(item_category)
+            return return_list
+        else:
+            return return_list
