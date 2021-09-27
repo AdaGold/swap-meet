@@ -26,13 +26,13 @@ class Vendor:
     def get_by_category(self, category):
         '''Search Vendor's inventory for item category, return a list of
         Item matches.'''
-        item_list = []
+        item_of_category_list = []
         
         # Loop through each item in instance's inventory list
         for item in self.inventory:
             # self.inventory => [<__main__.Item object at 0x10c302970>]
             # If category name matches an existing item category
             if category == item.category:
-                item_list.append(item)
+                item_of_category_list.append(item)
 
-        return item_list
+        return item_of_category_list
