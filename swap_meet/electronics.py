@@ -15,8 +15,9 @@ class Electronics:
         Method to stringify Electronics. Returns default message.
     """
 
-    def __init__(self, category="Electronics"):
+    def __init__(self, category="Electronics", condition=0):
         self.category = category
+        self.condition = condition
 
     def __str__(self):
         """Method to stringify Electronics. Returns default message."""
