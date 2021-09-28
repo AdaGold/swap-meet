@@ -1,7 +1,35 @@
 from swap_meet.item import Item
 
 class Vendor:
-    ''' '''
+    """
+    A class to represent a trading vendor at the swap meet.
+    
+    ...
+
+    Attributes
+    ----------
+    inventory : list
+        list of Item ojbects in vendor's possession
+
+    Methods
+    -------
+    add(inventory_item):
+        Adds an item to instance inventory list. Returns
+        item.
+
+    remove(inventory_item):
+        Removes item from list, returning item. Returns
+        False if not found.
+
+    get_by_category(category):
+        Search Vendor's inventory for item category, return a list of
+        Item matches.
+
+    swap_items(other_vendor, item_a, item_b):
+        Swaps two items from current instance of Vendor with another vendor, 
+        as defined in 'vendor_name'.
+    """
+
     def __init__(self, inventory=None):
         if not inventory:
             self.inventory = []
@@ -9,14 +37,14 @@ class Vendor:
             self.inventory = inventory
 
     def add(self, inventory_item):
-        ''' Add an item to instance inventory list. Returns
-        item.'''
+        """ Add an item to instance inventory list. Returns
+        item."""
         self.inventory.append(inventory_item)
         return inventory_item
 
     def remove(self, inventory_item):
-        ''' Removes item from list, returning item. Returns
-        False if not found.'''
+        """ Removes item from list, returning item. Returns
+        False if not found."""
         try:
             self.inventory.remove(inventory_item)
             return inventory_item
@@ -24,8 +52,8 @@ class Vendor:
             return False
 
     def get_by_category(self, category):
-        '''Search Vendor's inventory for item category, return a list of
-        Item matches.'''
+        """Search Vendor's inventory for item category, return a list of
+        Item matches."""
         item_of_category_list = []
         
         # Loop through each item in instance's inventory list
@@ -38,8 +66,8 @@ class Vendor:
         return item_of_category_list
 
     def swap_items(self, other_vendor, item_a, item_b):
-        '''Swaps two items from current instance of Vendor with another vendor, 
-        as defined in 'vendor_name'.'''
+        """Swaps two items from current instance of Vendor with another vendor, 
+        as defined in 'vendor_name'."""
 
         # Check if items in respective Vendor's inventories
         if item_a in self.inventory and item_b in other_vendor.inventory:
