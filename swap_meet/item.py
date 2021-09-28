@@ -15,8 +15,9 @@ class Item:
         Method to stringify Item. Returns default 'hello world!' message.
     """
 
-    def __init__(self, category=""):
+    def __init__(self, category="", condition=0):
         self.category = category
+        self.condition = condition
 
     def __str__(self):
         """Method to stringify Item. Returns default message."""
