@@ -63,10 +63,9 @@ class Vendor:
         Item matches."""
         item_of_category_list = []
         
-        # Loop through each item in instance's inventory list
         for item in self.inventory:
             # self.inventory => [<__main__.Item object at 0x10c302970>]
-            # If category name matches an existing item category
+            # If provided category name matches an item category in inventory
             if category == item.category:
                 item_of_category_list.append(item)
 
@@ -76,12 +75,14 @@ class Vendor:
         """Search Vendor's inventory for highest rated item in a particular
         category, return item. """
 
-        # Retrieve items of requested category
+        # Store list of vendor's items matching specified category
         items = self.get_by_category(category)
 
+        # Return False for no matches
         if not items:
             return None
         else:
+            # Find max value based on item.condition values
             item_with_max_val = max(items, key=lambda item: item.condition)
             return item_with_max_val
 
