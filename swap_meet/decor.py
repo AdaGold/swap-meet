@@ -15,8 +15,9 @@ class Decor:
         Method to stringify Decor. Returns default message.
     """
 
-    def __init__(self, category="Decor"):
+    def __init__(self, category="Decor", condition=0):
         self.category = category
+        self.condition = condition
 
     def __str__(self):
         """Method to stringify Decor. Returns default message."""
