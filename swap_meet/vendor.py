@@ -23,7 +23,11 @@ class Vendor:
 
     get_by_category(category):
         Search Vendor's inventory for item category, return a list of
-        Item matches.
+        Item object matches.
+    
+    get_best_by_category(category):
+        Search Vendor's inventory for highest rated item in a particular
+        category, return item object.
 
     swap_items(other_vendor, item_a, item_b):
         Swaps two items from current instance of Vendor with another vendor.
@@ -67,6 +71,19 @@ class Vendor:
                 item_of_category_list.append(item)
 
         return item_of_category_list
+
+    def get_best_by_category(self, category):
+        """Search Vendor's inventory for highest rated item in a particular
+        category, return item. """
+
+        # Retrieve items of requested category
+        items = self.get_by_category(category)
+
+        if not items:
+            return None
+        else:
+            item_with_max_val = max(items, key=lambda item: item.condition)
+            return item_with_max_val
 
     def swap_items(self, other_vendor, item_a, item_b):
         """Swaps two items from current instance of Vendor with another vendor, 
