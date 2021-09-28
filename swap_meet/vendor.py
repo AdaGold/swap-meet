@@ -36,3 +36,20 @@ class Vendor:
                 item_of_category_list.append(item)
 
         return item_of_category_list
+
+    def swap_items(self, other_vendor, item_a, item_b):
+        '''Swaps two items from current instance of Vendor with another vendor, 
+        as defined in 'vendor_name'.'''
+
+        # Check if items in respective Vendor's inventories
+        if item_a in self.inventory and item_b in other_vendor.inventory:
+            # Add item_a to other_vendor inventory & remove from current
+            self.add(item_b)
+            self.remove(item_a)
+            # Add item_b to current and remove from other_vendor inventory
+            other_vendor.add(item_a)
+            other_vendor.remove(item_b)
+
+            return True
+        else:
+           return False
