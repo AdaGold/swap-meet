@@ -1,4 +1,6 @@
-class Decor:
+from .item import Item
+
+class Decor(Item):
     """
     A class to represent an item of decor traded at the swap meet.
     
