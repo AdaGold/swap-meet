@@ -1,4 +1,6 @@
-class Clothing:
+from .item import Item
+
+class Clothing(Item):
     """
     A class to represent an item of clothing traded at the swap meet.
     
