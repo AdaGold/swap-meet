@@ -26,8 +26,11 @@ class Vendor:
         Item matches.
 
     swap_items(other_vendor, item_a, item_b):
-        Swaps two items from current instance of Vendor with another vendor, 
-        as defined in 'vendor_name'.
+        Swaps two items from current instance of Vendor with another vendor.
+
+    swap_first_item(other_vendor):
+        Swaps first listed items of current instance of Vendor and another 
+        vendor.
     """
 
     def __init__(self, inventory=None):
@@ -81,3 +84,20 @@ class Vendor:
             return True
         else:
            return False
+
+    def swap_first_item(self, other_vendor):
+        """Swaps first items of current vendor and other vendor. """
+        # Check that both vendors have items in inventory
+        if self.inventory and other_vendor.inventory:
+            # Append first item of each vendor's inventory to the 
+            # inventory of the other
+            self.add(other_vendor.inventory[0])
+            other_vendor.add(self.inventory[0])
+
+            # Remove the first item from each inventory list
+            self.remove(self.inventory[0])
+            other_vendor.remove(other_vendor.inventory[0])
+
+            return True
+        else:
+            return False
