@@ -15,7 +15,7 @@ class Clothing(Item):
         condition rating for item, values 1 (poor) to 5 (like new)
     
     age : int
-        age of item in years
+        default=None, age of item in years
 
     Methods
     ------- 
@@ -23,7 +23,7 @@ class Clothing(Item):
         Method to stringify Clothing. Returns default message.
     """
 
-    def __init__(self, condition=0, age=0):
+    def __init__(self, condition=0, age=None):
         super().__init__(category="Clothing", condition=condition, age=age)
 
     def __str__(self):
