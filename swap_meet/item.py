@@ -13,7 +13,7 @@ class Item:
         condition rating for item, values 1 (poor) to 5 (like new)
     
     age : int
-        age of item in years
+        default=None, age of item in years
         
     Methods
     ------- 
@@ -21,10 +21,10 @@ class Item:
         Method to stringify Item. Returns default 'hello world!' message.
     
     condition_description(self):
-        Method that describes Item based on it's condition rating. 
+        Method that describes Item based on it's numeric condition rating. 
     """
 
-    def __init__(self, category="", condition=0, age=0):
+    def __init__(self, category="", condition=0, age=None):
         self.category = category
         self.condition = condition
         self.age = age
