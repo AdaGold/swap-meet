@@ -17,13 +17,9 @@ class Electronics(Item):
         Method to stringify Electronics. Returns default message.
     """
 
-    # TODO: Is there a less repetitive way to do this?
-    def __init__(self, category="Electronics", condition=0):
-        self.category = category
-        self.condition = condition
-
-    # def __init__(self, category="Electronics", condition=0)
-    #     super().__init__(category="Electronics", condition=0)
+    #Inherits Item init, requiring "Electronics" as category
+    def __init__(self, condition=0):
+        super().__init__(category="Electronics", condition=condition)
 
     def __str__(self):
         """Method to stringify Electronics. Returns default message."""
