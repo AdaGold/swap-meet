@@ -11,13 +11,19 @@ class Decor(Item):
     category : str
         categorical descriptor for decor
 
+    condition : int
+        condition rating for item, values 1 (poor) to 5 (like new)
+    
+    age : int
+        age of item in years
+
     Methods
     ------- 
     __str__():
         Method to stringify Decor. Returns default message.
     """
-    def __init__(self, condition=0):
-        super().__init__(category="Decor", condition=condition)
+    def __init__(self, condition=0, age=0):
+        super().__init__(category="Decor", condition=condition, age=age)
 
     def __str__(self):
         """Method to stringify Decor. Returns default message."""
