@@ -11,6 +11,12 @@ class Electronics(Item):
     category : str
         categorical descriptor for electronics
 
+    condition : int
+        condition rating for item, values 1 (poor) to 5 (like new)
+    
+    age : int
+        age of item in years
+
     Methods
     ------- 
     __str__():
@@ -18,7 +24,7 @@ class Electronics(Item):
     """
 
     #Inherits Item init, requiring "Electronics" as category
-    def __init__(self, condition=0):
+    def __init__(self, condition=0, age=0):
         super().__init__(category="Electronics", condition=condition)
 
     def __str__(self):
