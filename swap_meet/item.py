@@ -9,6 +9,12 @@ class Item:
     category : str
         categorical descriptor for item
 
+    condition : int
+        condition rating for item, values 1 (poor) to 5 (like new)
+    
+    age : int
+        age of item in years
+        
     Methods
     ------- 
     __str__():
@@ -18,9 +24,10 @@ class Item:
         Method that describes Item based on it's condition rating. 
     """
 
-    def __init__(self, category="", condition=0):
+    def __init__(self, category="", condition=0, age=0):
         self.category = category
         self.condition = condition
+        self.age = age
 
     def __str__(self):
         """Method to stringify Item. Returns default message."""
