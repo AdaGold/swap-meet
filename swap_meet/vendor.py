@@ -35,6 +35,10 @@ class Vendor:
     swap_first_item(other_vendor):
         Swaps first listed items of current instance of Vendor and another 
         vendor.
+
+    swap_best_by_category(other, my_priority, their_priority):
+        Swaps item in best condition in current instance and other vendor's 
+        instance, filtered by explicitly preferred category from each user.
     """
 
     def __init__(self, inventory=None):
@@ -107,15 +111,8 @@ class Vendor:
         """Swaps first items of current vendor and other vendor. """
         # Check that both vendors have items in inventory
         if self.inventory and other_vendor.inventory:
-            # Append first item of each vendor's inventory to the 
-            # inventory of the other
-            self.add(other_vendor.inventory[0])
-            other_vendor.add(self.inventory[0])
-
-            # Remove the first item from each inventory list
-            self.remove(self.inventory[0])
-            other_vendor.remove(other_vendor.inventory[0])
-
+            self.swap_items(other_vendor, self.inventory[0], 
+                            other_vendor.inventory[0])
             return True
         else:
             return False
