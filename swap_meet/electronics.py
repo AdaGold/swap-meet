@@ -25,7 +25,7 @@ class Electronics(Item):
 
     #Inherits Item init, requiring "Electronics" as category
     def __init__(self, condition=0, age=0):
-        super().__init__(category="Electronics", condition=condition)
+        super().__init__(category="Electronics", condition=condition, age=age)
 
     def __str__(self):
         """Method to stringify Electronics. Returns default message."""
