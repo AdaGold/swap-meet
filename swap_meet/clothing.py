@@ -9,7 +9,7 @@ class Clothing(Item):
     Attributes
     ----------
     category : str
-        categorical descriptor for clothing
+        "Clothing", mandatory categorical descriptor for clothing
 
     condition : int
         condition rating for item, values 1 (poor) to 5 (like new)
