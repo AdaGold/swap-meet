@@ -86,18 +86,18 @@ class Vendor:
             item_with_max_val = max(items, key=lambda item: item.condition)
             return item_with_max_val
 
-    def swap_items(self, other_vendor, item_a, item_b):
+    def swap_items(self, other_vendor, self_item, other_item):
         """Swaps two items from current instance of Vendor with another vendor, 
         as defined in 'vendor_name'."""
 
         # Check if items in respective Vendor's inventories
-        if item_a in self.inventory and item_b in other_vendor.inventory:
+        if self_item in self.inventory and other_item in other_vendor.inventory:
             # Add item_a to other_vendor inventory & remove from current
-            self.add(item_b)
-            self.remove(item_a)
+            self.add(other_item)
+            self.remove(self_item)
             # Add item_b to current and remove from other_vendor inventory
-            other_vendor.add(item_a)
-            other_vendor.remove(item_b)
+            other_vendor.add(self_item)
+            other_vendor.remove(other_item)
 
             return True
         else:
@@ -117,5 +117,19 @@ class Vendor:
             other_vendor.remove(other_vendor.inventory[0])
 
             return True
+        else:
+            return False
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        """
+        Swaps item in best condition in current instance and other vendor's 
+        instance, filtered by explicitly preferred category from each user."""
+        
+        my_priority_in_other = other.get_best_by_category(my_priority)
+        others_priority_in_mine = self.get_best_by_category(their_priority)
+
+        if my_priority_in_other and others_priority_in_mine:
+            return self.swap_items(other, others_priority_in_mine, 
+                                    my_priority_in_other)
         else:
             return False
