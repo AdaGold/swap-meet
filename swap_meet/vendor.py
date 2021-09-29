@@ -39,6 +39,13 @@ class Vendor:
     swap_best_by_category(other, my_priority, their_priority):
         Swaps item in best condition in current instance and other vendor's 
         instance, filtered by explicitly preferred category from each user.
+
+    get_newest():
+        Search Vendor's inventory for newest item, return item.
+
+    swap_by_newest(other):
+        Swaps newest items between current instance vendor and other 
+        vendor.
     """
 
     def __init__(self, inventory=None):
@@ -130,3 +137,23 @@ class Vendor:
                                     my_priority_in_other)
         else:
             return False
+
+    def get_newest(self):
+        """Search Vendor's inventory for newest item, return item. """
+
+        # Use min function to determine Item in inventory with lowest age
+        #  only for items with a non-default age
+        item_lowest_age = min(self.inventory,
+            key=lambda item: item.age if type(item.age) == int else None)
+        
+        return item_lowest_age
+
+    def swap_by_newest(self, other):
+        """
+        Swaps newest items between current instance vendor and other 
+        vendor."""
+
+        my_newest_item = self.get_newest()
+        their_newest_item = other.get_newest()
+
+        self.swap_items(other, my_newest_item, their_newest_item)
