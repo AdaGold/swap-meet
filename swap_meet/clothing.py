@@ -11,14 +11,20 @@ class Clothing(Item):
     category : str
         categorical descriptor for clothing
 
+    condition : int
+        condition rating for item, values 1 (poor) to 5 (like new)
+    
+    age : int
+        age of item in years
+
     Methods
     ------- 
     __str__():
         Method to stringify Clothing. Returns default message.
     """
 
-    def __init__(self, condition=0):
-        super().__init__(category="Clothing", condition=condition)
+    def __init__(self, condition=0, age=0):
+        super().__init__(category="Clothing", condition=condition, age=age)
 
     def __str__(self):
         """Method to stringify Clothing. Returns default message."""
