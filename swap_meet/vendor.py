@@ -143,10 +143,12 @@ class Vendor:
 
         # Use min function to determine Item in inventory with lowest age
         #  only for items with a non-default age
-        item_lowest_age = min(self.inventory,
-            key=lambda item: item.age if type(item.age) == int else None)
+        age_list = []
+        for item in self.inventory:
+            if item.age:
+                age_list.append(item)
         
-        return item_lowest_age
+        return min(age_list, key=lambda item: item.age)
 
     def swap_by_newest(self, other):
         """
