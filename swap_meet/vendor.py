@@ -141,14 +141,18 @@ class Vendor:
     def get_newest(self):
         """Search Vendor's inventory for newest item, return item. """
 
-        # Use min function to determine Item in inventory with lowest age
-        #  only for items with a non-default age
+        # Append items to age_list if they have an age
         age_list = []
         for item in self.inventory:
             if item.age:
                 age_list.append(item)
-        
-        return min(age_list, key=lambda item: item.age)
+
+        # Account for empty age_list --> no_newest value
+        if not age_list:
+            return False
+        # Return item with smallest age
+        else:
+            return min(age_list, key=lambda item: item.age)
 
     def swap_by_newest(self, other):
         """
