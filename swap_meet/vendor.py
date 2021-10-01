@@ -162,4 +162,8 @@ class Vendor:
         my_newest_item = self.get_newest()
         their_newest_item = other.get_newest()
 
-        self.swap_items(other, my_newest_item, their_newest_item)
+        # If both parties have items with an age, swap youngest items
+        if my_newest_item and their_newest_item:
+            self.swap_items(other, my_newest_item, their_newest_item)
+        else:
+            return False
