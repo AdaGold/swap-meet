@@ -30,10 +30,25 @@ class Vendor:
         remove their item from their inventory
         '''
         try:
+            if (my_item not in self.inventory) or (their_item not in vendor.inventory):
+                raise 
             vendor.add(my_item)
             self.remove(my_item)
             self.add(their_item)
             vendor.remove(their_item)
+            return True
+        except:
+            return False
+
+    def swap_first_item(self, vendor):
+        '''
+        swap the first item between my inventory and vendor's inventory.
+        return false if either inventory is empty.
+        '''
+        try:
+            my_item = self.inventory[0]
+            their_item = vendor.inventory[0]
+            self.swap_items(vendor, my_item, their_item)
             return True
         except:
             return False
