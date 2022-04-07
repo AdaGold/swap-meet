@@ -52,3 +52,34 @@ class Vendor:
             return True
         except:
             return False
+    
+    def get_best_by_category(self, category):
+        '''
+        return item with best condition in a given category (returns one item only)
+        if no items match the given category, return None
+        '''
+        condition = -1
+        best_item = None
+        items = self.get_by_category(category)
+        # if len(items) > 0:
+        for item in items:
+            if item.condition > condition:
+                best_item = item
+                condition = item.condition
+        return best_item
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        '''
+        swap items with best condition between my preferred category and another vendor's preferred category
+        if no items are in the category in either vendor's inventory, return False
+        '''
+        my_item = self.get_best_by_category(their_priority)
+        print(f"my item: {my_item}")
+        their_item = other.get_best_by_category(my_priority)
+        print(f"their item: {their_item}")
+
+        if None in (my_item, their_item):
+            return False
+        # else:
+        self.swap_items(other, my_item, their_item)
+        return True
