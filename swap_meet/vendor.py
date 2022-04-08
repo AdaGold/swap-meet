@@ -71,12 +71,12 @@ class Vendor:
             return None 
 
 
-        # item_dict = {}
-        # for item in item_list: 
-        #     item_dict[item] = item.condition 
+        item_dict = {}
+        for item in item_list: 
+            item_dict[item] = item.condition 
 
-        item_dict = dict.fromkeys{item_list, item.condition }
-        item_dict = {item.condition for (item, item.condition in item_list}
+        # item_dict = dict.fromkeys{item_list, item.condition }
+        # item_dict = {item.condition for (item, item.condition in item_list}
 
         best_score = max(item_dict, key=item_dict.get)
         return(best_score)
