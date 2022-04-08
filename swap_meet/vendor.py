@@ -2,6 +2,7 @@ class Vendor:
     def __init__ (self, inventory = None):
         if not inventory:
             inventory = []
+            
         self.inventory = inventory
 
     def add(self, item): 
@@ -12,14 +13,17 @@ class Vendor:
         try: 
             self.inventory.remove(item)
             return item
+
         except:
             return False
 
     def get_by_category(self, category):
         items = []
+
         for item in self.inventory:
             if item.category == category:
                 items.append(item)
+
         return items
 
     def swap_items(self, vendor, my_item, their_item):
@@ -28,29 +32,23 @@ class Vendor:
         remove my item from my inventory
         add their item to my inventory
         remove their item from their inventory
-
-        trying this using tuple swap instead:
+        ---
+        I initially used the above add() and remove() methods, but wanted something a bit more logically streamlined. 
+        Accomplishing the swap of items using a tuple allows for a direct in-place substitution without iterating over the lists.
+        However, I'm not sure if list index() and list remove() have significantly different time complexity - both seem to be O(n).
+        In addition, using this method throws an error if either item is not in the list, 
+        which allows me to return False using try-except, instead of manually checking and returning False.
         '''
         try:
             my_item_index = self.inventory.index(my_item)
             their_item_index = vendor.inventory.index(their_item)
+
             swap_items = self.inventory[my_item_index], vendor.inventory[their_item_index]
             vendor.inventory[their_item_index], self.inventory[my_item_index] = swap_items
             return True
+
         except:
             return False
-
-        # Old method. perhaps the above is more efficient?
-        # try:
-        #     if (my_item not in self.inventory) or (their_item not in vendor.inventory):
-        #         raise 
-        #     vendor.add(my_item)
-        #     self.remove(my_item)
-        #     self.add(their_item)
-        #     vendor.remove(their_item)
-        #     return True
-        # except:
-        #     return False
 
     def swap_first_item(self, vendor):
         '''
@@ -62,6 +60,7 @@ class Vendor:
             their_item = vendor.inventory[0]
             self.swap_items(vendor, my_item, their_item)
             return True
+
         except:
             return False
     
@@ -73,11 +72,12 @@ class Vendor:
         condition = -1
         best_item = None
         items = self.get_by_category(category)
-        # if len(items) > 0:
+
         for item in items:
             if item.condition > condition:
                 best_item = item
                 condition = item.condition
+
         return best_item
 
     def swap_best_by_category(self, other, my_priority, their_priority):
@@ -90,6 +90,6 @@ class Vendor:
 
         if None in (my_item, their_item):
             return False
-        # else:
+
         self.swap_items(other, my_item, their_item)
         return True
