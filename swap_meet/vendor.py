@@ -9,21 +9,61 @@ class Vendor:
 
     Attributes
     ----------
-    inventory : list
+    inventory : list (optional)
         a list of available items for each vendor
 
 
     Methods
     -------
     add(item):
-        adds a new item to the vendor's inventory
-        Returns the updated inventory list
+        - adds a new item to the vendor's inventory
+        - Returns the updated inventory list
+
     remove(item):
-        removes an item from the vendor's inventory list
-        Returns the updated inventory list
+        - removes an item from the vendor's inventory list
+        - Returns the updated inventory list
+
     get_best_by_category(category):
-        takes a string representing a category
-        Returns a list of items in the inventory with the same category
+        - takes a string representing a category
+        - Returns a list of items in the inventory with the same category
+
+    swap_items(other_vendor,my_item,their_item):
+        - takes an instance of another vendor, two instances of Item item (my_item)
+        and item(their_item)
+        - removes my_item from vendor's inventory and adds it to the other_vendor inventory
+        - removes their_item from other_vendor inventory and adds it to the vendor inventory
+        - return True
+        - returns False if my_item not in vendor's inventory or their item not in 
+        other_vendor's inventory
+
+    swap_first_item(friend_vendor):
+        - takes in an instance of another vendor friend_vendor
+        - removes the first item in vendor's inventory and add that to the friend_vendor inventory
+        - removes the first item in friend_vendor inventory and add that to the vendor inventory
+        - returns True
+        - returns False if vendor inventory or friend_vendor inventory is empty 
+
+    get_best_by_category(category):
+        - takes in a string representing the category
+        - looks through vendor's inventory for the item with the highest condition
+        and matching category
+        - returns one item that matches the aforementioned criteria
+
+    swap_best_by_category(other,my_priority,their_priority):
+        - takes in an instance of another vendor (other), a string for a category that the vendor wants
+        to receive (my_priority) and a string for a category that the other vendors wants to receive (other)
+        - passes my_priority and their_priority to the get_best_by_category function to find items with highest
+        condition in each category
+        - passes items to the swap_items to swap those items 
+        - returns True
+        - returns False if my_priority not in vendor's inventory or their priority not in the
+        other's inventory
+
+    swap_by_newest(other):
+        - takes in another instance of vendor (other)
+        - sorts the vendor inventory and other inventory based on the age of items
+        - returns swap_first_item for the vendor and other vendor with sorted inventories
+
     """
 
 
@@ -67,8 +107,7 @@ class Vendor:
         self.add(friend_vendor.inventory[0])
         friend_vendor.remove(friend_vendor.inventory[0])
         self.remove(self.inventory[0])
-        print (self.inventory)
-        return self.inventory and True
+        return True
 
     def get_best_by_category(self,category):
         matched_category = [item for item in self.inventory if category == item.category]
@@ -92,6 +131,8 @@ class Vendor:
 
 
     def swap_by_newest(self,other):
+        if not all ((self.inventory , other.inventory)):
+            return None
         self.inventory = sorted(self.inventory, key=lambda item: item.age, reverse=False)
         other.inventory = sorted(other.inventory, key=lambda item: item.age, reverse=False)
         return self.swap_first_item(other)
