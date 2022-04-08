@@ -1,19 +1,36 @@
 from swap_meet.item import Item 
 
-
 class Vendor:
     def __init__(self, inventory=None):
         self.inventory = inventory if inventory is not None else []
+
+    @staticmethod
+    def check_if_in_inventory(inventory, item):  
+        if item not in inventory: 
+           return False
+        return True 
+
+    # pass in vendors as tuple, and items as tuple to iterate through them 
+    # just have one static method 
+    
+    @staticmethod 
+    def combo_static_combo(vendor_1, vendor_2, item_1, item_2): 
+        if Vendor.check_if_in_inventory(vendor_1.inventory, item_1) and Vendor.check_if_in_inventory(vendor_2.inventory, item_2):
+            return True 
+        return False 
 
 
     def add(self, item): 
         self.inventory.append(item)
         return item 
+
+
     def remove(self, item):
-        if item not in self.inventory:
-            return False 
-        self.inventory.remove(item)
-        return item 
+        if Vendor.check_if_in_inventory(self.inventory, item): 
+            self.inventory.remove(item)
+            return item 
+        return False 
+
 
     def get_by_category(self, category = ''):
         category_list = []
@@ -24,15 +41,14 @@ class Vendor:
         return category_list 
     
     def swap_items(self, vendor, my_item, their_item):
-        if my_item not in self.inventory or their_item not in vendor.inventory: 
-            return False 
-       
+        if Vendor.combo_static_combo(self, vendor, my_item, their_item):    
         
-        vendor.inventory.append(my_item)
-        self.inventory.remove(my_item)
-        self.inventory.append(their_item)
-        vendor.inventory.remove(their_item)
-        return True 
+            vendor.inventory.append(my_item)
+            self.inventory.remove(my_item)
+            self.inventory.append(their_item)
+            vendor.inventory.remove(their_item)
+            return True 
+        return False 
 
     def swap_first_item(self, vendor):
         if self.inventory == []  or vendor.inventory == []: 
@@ -41,10 +57,7 @@ class Vendor:
         first_self = self.inventory[0]
         first_vendor = vendor.inventory[0]
 
-        self.inventory.pop(0)
-        vendor.inventory.pop(0)
-        self.inventory.append(first_vendor)
-        vendor.inventory.append(first_self)
+        item_swap = self.swap_items(vendor, first_self, first_vendor)
         return True 
 
 
@@ -52,20 +65,23 @@ class Vendor:
         if self.inventory == []: 
             return None 
 
-        category_score = []
+       
         item_list = self.get_by_category(category)
         if len(item_list) == 0:
             return None 
-        for item in item_list: 
-            category_score.append(item.condition)
-
-        best_score = max(category_score)
-
-        for item in item_list:
-            if item.condition == best_score: 
-                return item 
 
 
+        # item_dict = {}
+        # for item in item_list: 
+        #     item_dict[item] = item.condition 
+
+        item_dict = dict.fromkeys{item_list, item.condition }
+        item_dict = {item.condition for (item, item.condition in item_list}
+
+        best_score = max(item_dict, key=item_dict.get)
+        return(best_score)
+        
+      
     
 
 

@@ -54,8 +54,4 @@ def test_removing_not_found_is_false():
     # with pytest.raises(TypeError): 
     assert result == False 
     
-    # raise Exception('TypeError')
-    # assert result == False 
-    # *********************************************************************
-    # ****** Complete Assert Portion of this test **********
-    # *********************************************************************
+ 
