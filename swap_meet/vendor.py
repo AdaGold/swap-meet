@@ -1,13 +1,39 @@
 import operator
 
 class Vendor:
+
+    """
+        A class to represent a vendor.
+
+    ...
+
+    Attributes
+    ----------
+    inventory : list
+        a list of available items for each vendor
+
+
+    Methods
+    -------
+    add(item):
+        adds a new item to the vendor's inventory
+        Returns the updated inventory list
+    remove(item):
+        removes an item from the vendor's inventory list
+        Returns the updated inventory list
+    get_best_by_category(category):
+        takes a string representing a category
+        Returns a list of items in the inventory with the same category
+    """
+
+
     def __init__(self, inventory = None):
         if not inventory:
             inventory = []
         self.inventory = inventory
 
     def add(self,item):
-        result = self.inventory.append(item)
+        self.inventory.append(item)
         return item
 
     def remove(self,item):
@@ -41,7 +67,8 @@ class Vendor:
         self.add(friend_vendor.inventory[0])
         friend_vendor.remove(friend_vendor.inventory[0])
         self.remove(self.inventory[0])
-        return True
+        print (self.inventory)
+        return self.inventory and True
 
     def get_best_by_category(self,category):
         matched_category = [item for item in self.inventory if category == item.category]
@@ -60,26 +87,32 @@ class Vendor:
         if my_choice and their_choice:
             self.swap_items(other, their_choice,  my_choice)
             return True
-
         return False
 
-    def newest_item(self):
-        if self.inventory == []:
-            return None
-        new_item = self.inventory[0]
-        for item in self.inventory:
-            if item.age < new_item.age:
-                new_item = item
-        return new_item
+
+
+    def swap_by_newest(self,other):
+        self.inventory = sorted(self.inventory, key=lambda item: item.age, reverse=False)
+        other.inventory = sorted(other.inventory, key=lambda item: item.age, reverse=False)
+        return self.swap_first_item(other)
+
+
+
+
+
+    # def newest_item(self):
+    #     if self.inventory == []:
+    #         return None
+    #     new_item = self.inventory[0]
+    #     for item in self.inventory:
+    #         if item.age < new_item.age:
+    #             new_item = item
+    #     return new_item
 
         # sorted_inventory = self.inventory.sort(key = lambda item: item.age)
         # return sorted_inventory
-
-    def swap_by_newest(self,other):
-        new_self = self.newest_item()
-        new_other = other.newest_item()
-        return self.swap_items(other, new_self,new_other)
-
-        # result = sorted_self.swap_first_item(sorted_other)
-        return result
+        # new_self = self.newest_item()
+        # new_other = other.newest_item()
+        # return new_self.inventory.swap_first_item(new_other.inventory)
+        # return self.swap_items(other, new_self,new_other)
     # pass
