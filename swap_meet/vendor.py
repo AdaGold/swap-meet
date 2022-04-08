@@ -28,17 +28,29 @@ class Vendor:
         remove my item from my inventory
         add their item to my inventory
         remove their item from their inventory
+
+        trying this using tuple swap instead:
         '''
         try:
-            if (my_item not in self.inventory) or (their_item not in vendor.inventory):
-                raise 
-            vendor.add(my_item)
-            self.remove(my_item)
-            self.add(their_item)
-            vendor.remove(their_item)
+            my_item_index = self.inventory.index(my_item)
+            their_item_index = vendor.inventory.index(their_item)
+            swap_items = self.inventory[my_item_index], vendor.inventory[their_item_index]
+            vendor.inventory[their_item_index], self.inventory[my_item_index] = swap_items
             return True
         except:
             return False
+
+        # Old method. perhaps the above is more efficient?
+        # try:
+        #     if (my_item not in self.inventory) or (their_item not in vendor.inventory):
+        #         raise 
+        #     vendor.add(my_item)
+        #     self.remove(my_item)
+        #     self.add(their_item)
+        #     vendor.remove(their_item)
+        #     return True
+        # except:
+        #     return False
 
     def swap_first_item(self, vendor):
         '''
@@ -74,9 +86,7 @@ class Vendor:
         if no items are in the category in either vendor's inventory, return False
         '''
         my_item = self.get_best_by_category(their_priority)
-        print(f"my item: {my_item}")
         their_item = other.get_best_by_category(my_priority)
-        print(f"their item: {their_item}")
 
         if None in (my_item, their_item):
             return False
