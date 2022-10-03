@@ -11,3 +11,6 @@ class Vendor:
             self.inventory.remove(item)
             return item
         return False
+    
+    #def get_by_catergory(self)
+
