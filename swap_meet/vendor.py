@@ -51,6 +51,10 @@ class Vendor:
     def swap_first_item(self, swapping_vendor):
         """given another vendor, swap the first item
         in each of your inventories."""
-        #call swap_items, inputing the first item on each of your inventories:
-        result = self.swap_items(swapping_vendor, self.inventory[0], swapping_vendor.inventory[0])
-        return result
+        if self.inventory and swapping_vendor.inventory:
+            #call swap_items, inputing the first item on each of your inventories:
+            result = self.swap_items(swapping_vendor, self.inventory[0], swapping_vendor.inventory[0])
+            return result
+        else:
+            return False
+
