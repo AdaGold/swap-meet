@@ -40,7 +40,7 @@ def test_removing_from_inventory_returns_item():
     assert item not in vendor.inventory
     assert result == item
 
-@pytest.mark.skip
+#@pytest.mark.skip
 def test_removing_not_found_is_false():
     item = "item to remove"
     vendor = Vendor(
@@ -48,8 +48,5 @@ def test_removing_not_found_is_false():
     )
 
     result = vendor.remove(item)
-
-    raise Exception("Complete this test according to comments below.")
-    # *********************************************************************
-    # ****** Complete Assert Portion of this test **********
-    # *********************************************************************
+    #assert:
+    result == False
