@@ -1,6 +1,7 @@
 class Vendor:
     """The Vendor class has optional arguement inventory,
-    methods: .add(item), .remove(item), .get_by_category(category)"""
+    methods: .add(item), .remove(item), .get_by_category(category),
+    swap_items(swapping_vendor, my_item, their_item)"""
     def __init__(self, inventory = None):
         #if an inventory list is given, assign it to the attribute
         if inventory:
@@ -32,3 +33,18 @@ class Vendor:
             if item.category == category:
                 items_in_category.append(item)
         return items_in_category
+
+    def swap_items(self, swapping_vendor, my_item, their_item):
+        """given another vendor, my_item to swap, their_item to receive, make that swap."""
+        #if each item is in the right place, make the swap:
+        if my_item in self.inventory and their_item in swapping_vendor.inventory:
+            #make the swap
+            self.remove(my_item)
+            self.add(their_item)
+            swapping_vendor.add(my_item)
+            swapping_vendor.remove(their_item)
+            
+            return True
+        else:
+            return False
+
