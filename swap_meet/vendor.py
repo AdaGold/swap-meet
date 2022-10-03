@@ -1,5 +1,6 @@
 class Vendor:
-    #testing a small change for git hub
+    """The Vendor class has optional arguement inventory,
+    methods .add(item), .remove(item)"""
     def __init__(self, inventory = None):
         #if an inventory list is given, assign it to the attribute
         if inventory:
@@ -9,8 +10,16 @@ class Vendor:
             self.inventory = []
 
     def add(self, item):
-        #append the item to the inventory list.
+        """appends the item to the inventory list and returns the item"""
         self.inventory.append(item)
-        #return the new item
         return item
+
+    def remove(self, item):
+        """removes an item from the inventory list"""
+        #if item is in inventory, remove it
+
+        self.inventory.remove(item)
+
+        return item
+
         
