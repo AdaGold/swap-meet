@@ -7,3 +7,10 @@ class Vendor:
         #if no inventory list is given, initialize an empty list for inventory.
         else:
             self.inventory = []
+
+    def add(self, item):
+        #append the item to the inventory list.
+        self.inventory.append(item)
+        #return the new item
+        return item
+        
