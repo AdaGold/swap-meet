@@ -58,3 +58,23 @@ class Vendor:
         else:
             return False
 
+    def get_best_by_category(self, category):
+        """this will return the best item a vendor has in a given category"""
+        #In the case of a tie, it will return the LAST instance of this item.
+        best_item = None
+        items_in_category = []
+        for item in self.inventory:
+            if item.category == category:
+                items_in_category.append(item)
+                #I think there's a faster way to do this, in one loop.
+                #for now, I'm just going to get it working.
+        if items_in_category:
+            best_item = items_in_category[0]
+            for cat_item in items_in_category:
+                if cat_item.condition >= best_item.condition:
+                    best_item = cat_item
+        return best_item
+                
+        
+                
+
