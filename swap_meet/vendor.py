@@ -1,3 +1,6 @@
+from pytest import Item
+
+
 class Vendor:
     def __init__(self, inventory=None):
         if inventory is None:
@@ -43,3 +46,35 @@ class Vendor:
             
             
             return True
+
+    def get_best_by_category(self, category):
+        category_items = self.get_by_category(category)
+        
+        if category_items == []:
+            return None
+
+        best_product = ""
+        best_condition = 0
+
+        for product in category_items:
+            if product.condition > best_condition:
+                best_condition = product.condition
+                best_product = product
+        return best_product
+
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        for product in self.inventory:
+            if product.category == their_priority:
+                for product in other.inventory:
+                    if product.category == my_priority:
+                        other_wanted = self.get_best_by_category(their_priority)
+                        my_wanted = other.get_best_by_category(my_priority)
+
+
+                        self.inventory.append(my_wanted)
+                        other.inventory.append(other_wanted)
+                        self.inventory.remove(other_wanted)
+                        other.inventory.remove(my_wanted)
+                        return True
+            else:
+                return False
