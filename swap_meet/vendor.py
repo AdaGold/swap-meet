@@ -74,7 +74,17 @@ class Vendor:
                 if cat_item.condition >= best_item.condition:
                     best_item = cat_item
         return best_item
-                
-        
-                
+    
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        """This will swap two items: self will give their item
+        of highest quality from the category their_priority.
+        In return, the swapping_vendor will give their best item from 
+        the category my_priority."""
+        #figure out what items will be swapped.
+        my_item_to_swap = self.get_best_by_category(their_priority)
+        their_item_to_swap = other.get_best_by_category(my_priority)
+        result = self.swap_items(other, my_item_to_swap, their_item_to_swap)
+        return result
+
+
 
