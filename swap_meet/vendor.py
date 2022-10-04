@@ -1,3 +1,6 @@
+from typing import ItemsView
+
+
 class Vendor:
     def __init__(self, inventory=None):
         self.inventory = inventory if inventory is not None else []
@@ -11,6 +14,5 @@ class Vendor:
             self.inventory.remove(item)
             return item
         return False
-    
-    #def get_by_catergory(self)
 
+    #def get_by_catergory(self)
