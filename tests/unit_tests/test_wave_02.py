@@ -2,7 +2,7 @@ import pytest
 from swap_meet.vendor import Vendor
 from swap_meet.item import Item
 
-# pytest.mark.skip
+# @pytest.mark.skip
 def test_items_have_blank_default_category():
     item = Item()
     assert item.category == ""
@@ -39,6 +39,3 @@ def test_get_no_matching_items_by_category():
     # ****** Complete Assert Portion of this test **********
     # *********************************************************************
     assert len(items) == 0
-    assert item_a  not in items
-    assert item_c not in items
-    assert item_b not in items
