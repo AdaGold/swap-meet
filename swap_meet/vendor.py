@@ -19,4 +19,18 @@ class Vendor:
             if item.category == category:
                 items.append(item)
         return items
-    
+
+    def swap_items(self, another_vendor, my_item, their_item):
+        if my_item not in self.inventory or their_item not in another_vendor.inventory:
+            return False
+        else:
+            self.inventory.remove(my_item)
+            another_vendor.inventory.append(my_item)
+            self.inventory.append(their_item)
+            another_vendor.inventory.remove(their_item)
+            return True
+
+    def swap_first_item():
+        pass
+        
+
