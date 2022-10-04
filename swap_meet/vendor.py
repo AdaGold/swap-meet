@@ -44,13 +44,14 @@ class Vendor:
     def get_best_by_category(self, category):
         if not self.inventory:
             return None
-        target_condition = self.inventory.highest_condition()
+        target_condition = self.inventory.highest_condition(category)
         for item in self.inventory:
             if item.category == category and item.condition == target_condition:
                 return item
 
-    def highest_condition(self):
+    def highest_condition(self, category):
         list_of_conditions = []
         for item in self.inventory:
-            list_of_conditions.append(item.condition)
+            if item.category == category:
+                list_of_conditions.append(item.condition)
         return max(list_of_conditions)
