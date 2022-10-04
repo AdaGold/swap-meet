@@ -41,4 +41,16 @@ class Vendor:
             other_vendor.remove(other_vendor.inventory[0])
         return True
 
-    
+    def get_best_by_category(self, category):
+        if not self.inventory:
+            return None
+        target_condition = self.inventory.highest_condition()
+        for item in self.inventory:
+            if item.category == category and item.condition == target_condition:
+                return item
+
+    def highest_condition(self):
+        list_of_conditions = []
+        for item in self.inventory:
+            list_of_conditions.append(item.condition)
+        return max(list_of_conditions)
