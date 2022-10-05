@@ -55,6 +55,7 @@ class Vendor:
         # if not self.inventory or not other.inventory:
         if my_priority not in other.inventory or their_priority not in self.inventory:
             #think about empty categories
+            print(my_priority)
             return False
 
         # my_best_by_category = self.inventory[2]
@@ -63,6 +64,8 @@ class Vendor:
         my_best_by_category = self.get_best_by_category(their_priority)
         their_best_by_category = other.get_best_by_category(my_priority)
 
+        print(my_best_by_category.category)
+        print(their_best_by_category.category)
         result = self.swap_items(other, my_best_by_category, their_best_by_category)
 
         return result

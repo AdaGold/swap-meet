@@ -23,11 +23,11 @@ jesse = Vendor(
 )
 
 # Act
-#result = tai.swap_best_by_category(
-# other=jesse,
-#     my_priority="Clothing",
-#     their_priority="Decor"
-# )
-print(tai.inventory)
-print(jesse.inventory)
+result = tai.swap_best_by_category(
+other=jesse,
+    my_priority="Clothing",
+    their_priority="Decor"
+)
+# print(tai.inventory)
+# print(jesse.inventory)
 #print(result)
