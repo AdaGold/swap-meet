@@ -1,3 +1,6 @@
+from email.errors import ObsoleteHeaderDefect
+
+
 class Vendor:
     def __init__(self, inventory=None):
         if inventory is None:
@@ -36,10 +39,11 @@ class Vendor:
         if self.inventory == [] or another_vendor.inventory == []:
             return False
         else:
-            self.inventory.append(another_vendor.inventory[0])
-            another_vendor.inventory.append(self.inventory[0])
-            self.inventory.remove(self.inventory[0])
-            another_vendor.inventory.remove(another_vendor.inventory[0])
+            self.swap_items(another_vendor, self.inventory[0], another_vendor.inventory[0])
+            # self.inventory.append(another_vendor.inventory[0])
+            # another_vendor.inventory.append(self.inventory[0])
+            # self.inventory.remove(self.inventory[0])
+            # another_vendor.inventory.remove(another_vendor.inventory[0])
             
             
             return True
