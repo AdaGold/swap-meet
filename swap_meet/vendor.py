@@ -26,7 +26,7 @@ class Vendor:
                 items_list.append(item)
         
         if items_list == []:
-            return "Sorry, there are no items within that category."
+            return []
 
         return items_list
 
