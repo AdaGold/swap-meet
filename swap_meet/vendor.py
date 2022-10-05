@@ -1,3 +1,6 @@
+from cmath import inf
+
+
 class Vendor:
     def __init__(self, inventory=None):
         if inventory is None:
@@ -26,10 +29,11 @@ class Vendor:
         if my_item not in self.inventory or their_item not in another_vendor.inventory:
             return False
         else:
-            self.inventory.remove(my_item)
+            
             another_vendor.inventory.append(my_item)
             self.inventory.append(their_item)
             another_vendor.inventory.remove(their_item)
+            self.inventory.remove(my_item)
             return True
 
     def swap_first_item(self, another_vendor):
@@ -79,3 +83,20 @@ class Vendor:
 
         else:
             return False
+
+    def newest_item(self):
+        min_age = float(inf)
+        newest_item = ""
+
+        for product in self.inventory:
+            if product.age < min_age:
+                min_age = product.age
+                newest_item = product
+        
+        return newest_item
+
+    def swap_by_newest(self, another_vendor):
+        my_newest_item = self.newest_item
+        other_newest_item = another_vendor.newest_item
+
+        self.swap_items(another_vendor, my_newest_item, other_newest_item)

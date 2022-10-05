@@ -1,7 +1,8 @@
 class Item:
-    def __init__(self, category = "", condition = 0.0):
+    def __init__(self, category = "", condition = 0.0, age = None):
         self.category = category
         self.condition = condition
+        self.age = age
 
     def __str__(self):
         return "Hello World!"
@@ -17,6 +18,3 @@ class Item:
         }
 
         return rating_description[self.condition]
-
-    def swap_by_newest(self):
-        pass
