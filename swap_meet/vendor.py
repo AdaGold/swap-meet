@@ -40,12 +40,6 @@ class Vendor:
             return False
         else:
             self.swap_items(another_vendor, self.inventory[0], another_vendor.inventory[0])
-            # self.inventory.append(another_vendor.inventory[0])
-            # another_vendor.inventory.append(self.inventory[0])
-            # self.inventory.remove(self.inventory[0])
-            # another_vendor.inventory.remove(another_vendor.inventory[0])
-            
-            
             return True
 
     def get_best_by_category(self, category):
