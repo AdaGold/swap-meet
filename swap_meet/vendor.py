@@ -48,3 +48,27 @@ class Vendor:
         vendor_friend.inventory.append(my_first_item)
 
         return True
+
+# # WAVE 6
+# def get_by_category(self,category=""):
+#     ...
+#     list_of_items = []
+#     if True:
+# for item in self.inventory:
+#     self.inventory.remove(item)
+#         else:
+#             return False
+#     return True
+
+# def get_best_category(self):
+#     ...
+    # list = get_by_category()
+    # create a variable to hold the item with the best condition using max function(in the list, key=condition)
+    # acces each items?
+
+
+
+# ***helper function***
+def find_best_item():
+    ...
+    
