@@ -79,9 +79,9 @@ def test_swap_best_by_category():
     assert result == True
     assert len(jesse.inventory) == 3
     assert len(tai.inventory) == 3
-    assert tai.inventory == [item_a, item_b, item_f]
-    assert jesse.inventory == [item_c, item_d, item_e]
-    
+    assert all(item in [item_a, item_b, item_f] for item in tai.inventory)
+    assert all(item in [item_c, item_d, item_e] for item in jesse.inventory)
+
     # *********************************************************************
     # ****** Complete Assert Portion of this test **********
     # *********************************************************************
@@ -117,6 +117,8 @@ def test_swap_best_by_category_reordered():
     assert result == True
     assert len(tai.inventory) == 3
     assert len(jesse.inventory) == 3
+    assert all(item in [item_f, item_a, item_b] for item in tai.inventory)
+    assert all(item in [item_d, item_e, item_c] for item in jesse.inventory)
 
     # *********************************************************************
     # ****** Complete Assert Portion of this test **********
