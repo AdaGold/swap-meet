@@ -48,3 +48,5 @@ class Vendor:
         vendor_friend.inventory.append(my_first_item)
 
         return True
+    
+    
