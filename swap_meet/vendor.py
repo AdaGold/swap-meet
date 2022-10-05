@@ -45,9 +45,7 @@ class Vendor:
             return False
         
         self.add(vendor.inventory[0])
-        self.remove(self.inventory[0])
         vendor.add(self.inventory[0])
+        self.remove(self.inventory[0])
         vendor.remove(vendor.inventory[0])
-        print(self.inventory)
-        print(vendor.inventory)
         return True
