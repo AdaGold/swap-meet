@@ -42,7 +42,6 @@ class Vendor:
         return True
 
     def get_best_by_category(self, category):
-    ###updated version ##
         items_with_category = self.get_by_category(category)
         if not items_with_category:
             return None
@@ -53,16 +52,11 @@ class Vendor:
 
     def swap_best_by_category(self, other, my_priority, their_priority):
         if not self.inventory or not other.inventory:
-        # if my_priority not in other.inventory or their_priority not in self.inventory:
-            #think about empty categories
             print(my_priority)
             return False
         else:
-        #create new variable to hold category with highest condition based on my_priority and their_priority
             my_best_by_category = self.get_best_by_category(their_priority)
             their_best_by_category = other.get_best_by_category(my_priority)
-            #use swap items function to swap my_best_by_category(so i have what other person wants)
-            #use swap items function to swap their_best_by_category(so other vendor has what I want )
             result = self.swap_items(other, my_best_by_category, their_best_by_category)
             return result
 
