@@ -14,3 +14,5 @@ class Item:
 
         elif self.condition <= 5:
             return "Pretty good find. Nice."
+    
+    
