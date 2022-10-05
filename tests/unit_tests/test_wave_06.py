@@ -75,12 +75,14 @@ def test_swap_best_by_category():
         my_priority="Clothing",
         their_priority="Decor"
     )
-    print(tai.inventory)
-    print(jesse.inventory)
+    # print(tai.inventory)
+    # print(jesse.inventory)
 
-    #assert result
+    assert item_c in jesse.inventory
+    # assert result == True
     assert len(tai.inventory) == 3
     assert len(jesse.inventory) == 3
+    # assert item_f in tai.inventory 
 
     #raise Exception("Complete this test according to comments below.")
     # *********************************************************************
