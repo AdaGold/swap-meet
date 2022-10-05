@@ -96,7 +96,7 @@ class Vendor:
         return newest_item
 
     def swap_by_newest(self, another_vendor):
-        my_newest_item = self.newest_item
-        other_newest_item = another_vendor.newest_item
+        my_newest_item = self.newest_item()
+        other_newest_item = another_vendor.newest_item()
 
         self.swap_items(another_vendor, my_newest_item, other_newest_item)

@@ -46,8 +46,8 @@ from swap_meet.vendor import Vendor
 def test_swap_by_newest():
     # Arrange
     item_a = Clothing(age=0.0)
-    item_b = Electronics(age = 1.0)
-    item_c = Decor(age = 4.0)
+    item_b = Electronics(age=1.0)
+    item_c = Decor(age=4.0)
     tai = Vendor(
         inventory=[item_c, item_b, item_a]
     )
@@ -65,5 +65,5 @@ def test_swap_by_newest():
     #Assert
     assert len(tai.inventory) == 3
     assert len(jesse.inventory) == 3
-    assert all (item in [item_d, item_b, item_c] for item in tai.inventory)
-    assert all (item in [item_a, item_e, item_f] for item in jesse.inventory)
+    assert all(item in [item_d, item_b, item_c] for item in tai.inventory)
+    assert all(item in [item_a, item_e, item_f] for item in jesse.inventory)
