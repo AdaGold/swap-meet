@@ -30,7 +30,7 @@ def test_swap_first_item_returns_true():
     assert item_a in jolie.inventory
     assert result
 
-@pytest.mark.skip
+#@pytest.mark.skip
 def test_swap_first_item_from_my_empty_returns_false():
     fatimah = Vendor(
         inventory=[]
