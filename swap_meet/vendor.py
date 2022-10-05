@@ -1,6 +1,3 @@
-from email.errors import ObsoleteHeaderDefect
-
-
 class Vendor:
     def __init__(self, inventory=None):
         if inventory is None:
