@@ -20,12 +20,11 @@ class Vendor:
         return [item for item in self.inventory if item.category == category]
 
     def swap_items(self, friend, my_item, their_item):
-        # figure out why add method doesn't work, instead of append
         if my_item in self.inventory and their_item in friend.inventory:
-            self.inventory.append(their_item)
-            friend.inventory.remove(their_item)
-            friend.inventory.append(my_item)
-            self.inventory.remove(my_item)
+            self.add(their_item)
+            friend.remove(their_item)
+            friend.add(my_item)
+            self.remove(my_item)
             
             return True
         return False
