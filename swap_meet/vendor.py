@@ -16,21 +16,21 @@ class Vendor:
             return item
         return False
     
-    def get_by_category(self,category):
+    def get_by_category(self, category):
         return [item for item in self.inventory if item.category == category]
 
-    def swap_items(self, friend_inventory, my_item, their_item):
+    def swap_items(self, friend, my_item, their_item):
         # figure out why add method doesn't work, instead of append
-        if my_item in self.inventory and their_item in friend_inventory.inventory:
+        if my_item in self.inventory and their_item in friend.inventory:
             self.inventory.append(their_item)
-            friend_inventory.inventory.remove(their_item)
-            friend_inventory.inventory.append(my_item)
+            friend.inventory.remove(their_item)
+            friend.inventory.append(my_item)
             self.inventory.remove(my_item)
             
             return True
         return False
     
-    def swap_first_item(self,friend):
+    def swap_first_item(self, friend):
         
         if self.inventory and friend.inventory:
             friend.inventory.append(self.inventory[0])
@@ -40,7 +40,10 @@ class Vendor:
             return True
         return False
 
+    def get_best_by_category(self, category):
+        if not self.get_by_category(category):
+            return None
+        return max(self.get_by_category(category), key=lambda item: item.condition)
 
-
-
-
+    
+        
