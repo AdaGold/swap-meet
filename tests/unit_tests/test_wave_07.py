@@ -4,7 +4,7 @@ from swap_meet.clothing import Clothing
 from swap_meet.decor import Decor
 from swap_meet.electronics import Electronics
 
-@pytest.mark.skip
+# @pytest.mark.skip
 #this one is done
 def test_get_newest():
     item_a = Clothing(age=0.0)
@@ -20,7 +20,7 @@ def test_get_newest():
 
     assert newest_item.age == 0
 
-@pytest.mark.skip
+# @pytest.mark.skip
 #this one is done
 def test_get_newest_empty_inventory():
     tai = Vendor(
@@ -31,7 +31,7 @@ def test_get_newest_empty_inventory():
 
     assert newest_item is None
 
-@pytest.mark.skip
+# @pytest.mark.skip
 #this one is done more or less
 def test_get_newest_by_category():
     item_a = Clothing(age=0.0)
@@ -48,7 +48,7 @@ def test_get_newest_by_category():
     assert best_item.category == "Clothing"
     assert best_item.age == pytest.approx(0.0)
 
-@pytest.mark.skip
+# @pytest.mark.skip
 #this one is done more or less
 def test_get_newest_by_category_no_matches_is_none():
     item_a = Decor(age=2.0)
@@ -79,7 +79,7 @@ def test_get_newest_by_category_no_matches_is_none():
 #     assert best_item.category == "Clothing"
 #     assert best_item.condition == pytest.approx(4.0)
 
-@pytest.mark.skip
+# @pytest.mark.skip
 #this one is done 
 def test_swap_newest():
     # Arrange
@@ -113,7 +113,7 @@ def test_swap_newest():
     assert item_d not in jesse.inventory
     assert item_a not in tai.inventory
 
-@pytest.mark.skip
+# @pytest.mark.skip
 #this one is done 
 def test_swap_newest_by_category():
     # Arrange
@@ -190,7 +190,7 @@ def test_swap_newest_by_category():
 #     # - That tai and jesse's inventories are the correct length
 #     # - That all the correct items are in tai and jesse's inventories, and that the items that were swapped are not there
 
-@pytest.mark.skip
+# @pytest.mark.skip
 #this one is done
 def test_swap_newest_no_inventory_is_false():
     tai = Vendor(
@@ -204,8 +204,8 @@ def test_swap_newest_no_inventory_is_false():
         inventory=[item_a, item_b, item_c]
     )
 
-    result = tai.swap_newest_by_category(
-        other=jesse,
+    result = tai.swap_newest(
+        other=jesse
     )
 
     assert not result
@@ -216,7 +216,7 @@ def test_swap_newest_no_inventory_is_false():
     assert item_c in jesse.inventory
 
 
-@pytest.mark.skip
+# @pytest.mark.skip
 #this one is done
 def test_swap_newest_by_category_no_inventory_is_false():
     tai = Vendor(
@@ -244,7 +244,7 @@ def test_swap_newest_by_category_no_inventory_is_false():
     assert item_c in jesse.inventory
 
 
-@pytest.mark.skip
+# @pytest.mark.skip
 #this one is done
 def test_swap_newest_by_category_no_match_is_false():
     # Arrange

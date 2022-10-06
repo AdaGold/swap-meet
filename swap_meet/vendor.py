@@ -12,6 +12,7 @@ class Vendor:
         if item in self.inventory:
             self.inventory.remove(item)
             return item
+
         return False
 
     def get_by_category(self, category):
@@ -19,6 +20,7 @@ class Vendor:
         for item in self.inventory:       
             if item.category == category:
                 list_of_items.append(item)
+
         return list_of_items
 
     def swap_items(self, other_vendor, my_item, their_item):
@@ -32,7 +34,6 @@ class Vendor:
         return True
 
     def swap_first_item(self, other_vendor):
-
         if not self.inventory or not other_vendor.inventory: 
             return False
         
@@ -45,6 +46,7 @@ class Vendor:
         items_with_category = self.get_by_category(category)
         if not items_with_category:
             return None
+
         max_item_condition = max(items_with_category, key=lambda item: item.condition)
         return max_item_condition
 
@@ -55,30 +57,51 @@ class Vendor:
 
         if not my_best_by_category or not their_best_by_category:
             return False
-        # if not self.inventory or not other.inventory:
-        #     return False
-    
+
         result = self.swap_items(other, my_best_by_category, their_best_by_category)
         return result
 
-    def get_newest():
-        pass
+    def get_newest(self, any_list=None):
+        # any_list = self.inventory if self.inventory is not None else []
+        # other version #
+        if any_list is None:
+            any_list = self.inventory
+
+        if not self.inventory or not any_list:
+            return None
+
+        return min(any_list, key=lambda item: item.age)
+        
     
     def get_newest_by_category(self, category):
-        pass
+        newest_items_with_category = self.get_by_category(category)
+        if not newest_items_with_category:
+            return None
+
+        newest_item = self.get_newest(newest_items_with_category)
+        return newest_item
+
 
     def swap_newest(self, other):
-        pass
+        my_newest_item = self.get_newest()
+        other_newest_item = other.get_newest()
+        if not my_newest_item or not other_newest_item:
+            return False
 
-    def swap_newest_by_category(self, other, my_priority, their_priority):
-        pass
+        self.swap_items(other, my_newest_item, other_newest_item)
+        return True
 
-    #swap best by age and category?
-    #swap best: old/retro but good condition?
 
-    #More refactoring questions
-    #if we round the float, may we loose some info? 
-    # condition 3,7 and 3,8 will round into 4 making them the same
+
+    def swap_newest_by_category(self, other, my_priority=None, their_priority=None):
+        my_newest_by_category = self.get_newest_by_category(their_priority)
+        their_newest_by_category = other.get_newest_by_category(my_priority)
+        if not my_newest_by_category or not their_newest_by_category:
+            return False
+
+        self.swap_items(other, my_newest_by_category, their_newest_by_category)
+        return True
+
 
     
 
