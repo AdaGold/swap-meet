@@ -41,10 +41,7 @@ class Vendor(Item):
         if self.inventory == [] or vendor.inventory == []:
             return False
         
-        self.add(vendor.inventory[0])
-        vendor.add(self.inventory[0])
-        self.remove(self.inventory[0])
-        vendor.remove(vendor.inventory[0])
+        self.swap_items(vendor, self.inventory[0], vendor.inventory[0])
         return True
 
     def get_best_by_category(self, category):
@@ -59,12 +56,8 @@ class Vendor(Item):
     
     def swap_best_by_category(self, other, my_priority, their_priority):
         '''
-        Input: other (for other vendor), my_priority (category vendor prefers),
-        and their_priority (category other vendor prefers) 
-        Output: 
-            - returns True if best item in Vendor inventory matches their_priority
-            and is swapped with the best item in other's inventory
-            - returns False if not matches
+        Input: other (for other vendor), my_priority (category vendor prefers),and their_priority (category other vendor prefers) 
+        Output: returns True if both Vendor and other Vendor have items in prioritized by their respective swappers
         '''
         vendor_best_item = self.get_best_by_category(their_priority)
         other_best_item = other.get_best_by_category(my_priority)
