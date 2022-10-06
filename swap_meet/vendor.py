@@ -1,3 +1,6 @@
+from nis import cat
+
+
 class Vendor:
     def __init__(self, inventory=None):
         inventory = inventory if inventory is not None else []
@@ -59,32 +62,30 @@ class Vendor:
         
         return best_item
 
-
     def swap_best_by_category(self, other, my_priority, their_priority):#swaps the best item of certain categories with other_vendor
         
-        # if their_priority not in self.inventory or my_priority not in other.inventory:
-        #     return False
+        their_priority_item = other.get_best_by_category(my_priority)
+        my_priority_item = self.get_best_by_category(their_priority)
+        return self.swap_items(other, my_priority_item, their_priority_item)
+        """
+        other, which represents another Vendor instance to trade with
+        my_priority, which represents a category that the Vendor wants to receive
+        their_priority, which represents a category that other wants to receive
+        """
         
-        best_item = max(self.inventory, key = lambda item: item.condition)
-        print(f"best item: {best_item}")
-        # self.inventory.remove(my_item)
-        # vendor_friend.inventory.append(my_item)
+        # best item in self.inventory that matches their_priority is SWAPPED with the best item in other_vendor inventory that matches my_priority
+        # 1.my_priority
+        # 2.their_priority
+        # 3.find the best item in self.inventory that matches their_priority **can call get_best_by_category here**
+        #     3b. if no match:returns False
+        # 4.find the best item in other_vendor.inventory that matches their_priority **can call get_best_by_category here**
+        #     4.b.  if no match:returns False
+        # 5. swap the best items
+            # : can we call  swap_items(): here so that swap_best_by_category and swap_first_item can use it???
 
-        # vendor_friend.inventory.remove(their_item)
-        # self.inventory.append(their_item)
         # return True
-        
-#         # best item in self.inventory that matches their_priority is SWAPPED with the best item in other_vendor inventory that matches my_priority
-#         # 1.my_priority
-#         # 2.their_priority
-#         # 3.find the best item in self.inventory that matches their_priority **can call get_best_by_category here**
-#         #     3b. if no match:returns False
-#         # 4.find the best item in other_vendor.inventory that matches their_priority **can call get_best_by_category here**
-#         #     4.b.  if no match:returns False
-#         # 5. swap the best items
-#             # : can we call  swap_items(): here so that swap_best_by_category and swap_first_item can use it???
-        
-#         ...
+        ...
+
 
     # # helper_function
     # def get_best_item(self, list_of_items):
