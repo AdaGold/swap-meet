@@ -56,3 +56,20 @@ class Vendor(Item):
             return None
         best_item = max(self.get_by_category(category), key = lambda i : i.condition)
         return best_item 
+    
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        '''
+        Input: other (for other vendor), my_priority (category vendor prefers),
+        and their_priority (category other vendor prefers) 
+        Output: 
+            - returns True if best item in Vendor inventory matches their_priority
+            and is swapped with the best item in other's inventory
+            - returns False if not matches
+        '''
+        vendor_best_item = self.get_best_by_category(their_priority)
+        other_best_item = other.get_best_by_category(my_priority)
+
+        if vendor_best_item is None or other_best_item is None:
+            return False
+        self.swap_items(other, vendor_best_item, other_best_item)
+        return True
