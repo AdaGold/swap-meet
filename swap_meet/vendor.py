@@ -1,3 +1,6 @@
+from nis import cat
+
+
 class Vendor:
     def __init__(self, inventory=None):
         inventory = inventory if inventory is not None else []
@@ -50,26 +53,75 @@ class Vendor:
         return True
 
 # # WAVE 6
-# def get_by_category(self,category=""):
-#     ...
-#     list_of_items = []
-#     if True:
-# for item in self.inventory:
-#     self.inventory.remove(item)
-#         else:
-#             return False
-#     return True
+# 
+    def get_best_by_category(self, category): # we need to put only category since they have passed 'clothing' in the test
+        # if no items in self.inventory that matches: return None
+        # if len(self.inventory) == 0:
+        #     return None
+        
+        #list_of_category_items = self.get_by_category(self, category=category) #BUG HERE
 
-# def get_best_category(self):
-#     ...
-    # list = get_by_category()
-    # create a variable to hold the item with the best condition using max function(in the list, key=condition)
-    # acces each items?
+        # get the item with the best condition in a certain category (the most most appearing category)
+        # 1. i.e. find best condition
+        # 2. make sure it's a certain category
+        #best_item_in_category_list = self.find_best_item(list_of_category_items)
+        
+        # create a new list, check if category is in the inventory or not
+            # if yes, append item
+            # if the created list is empty, return None
+        # loop through self.inventory list to find the item with best condition AND matching category
+        # for item in self.inventory:
+        #     if item == best_item_in_category_list:
+        #         return item
+            
+        # return None
+        
+        category_list = []
+        for item in self.inventory:
+            if item.category == category:
+                category_list.append(item)
+        if category_list == []:
+            return None
+        return max(category_list, key=lambda item: item.condition)
+        
+        #best_item_in_category_list = self.find_best_item(list_of_category_items)
 
+    def swap_best_by_category(self, other, my_priority, their_priority):#swaps the best item of certain categories with other_vendor
+        
+        their_priority_item = other.get_best_by_category(my_priority)
+        my_priority_item = self.get_best_by_category(their_priority)
+        return self.swap_items(other, my_priority_item, their_priority_item)
+        """
+        other, which represents another Vendor instance to trade with
+        my_priority, which represents a category that the Vendor wants to receive
+        their_priority, which represents a category that other wants to receive
+        """
+        
+        # best item in self.inventory that matches their_priority is SWAPPED with the best item in other_vendor inventory that matches my_priority
+        # 1.my_priority
+        # 2.their_priority
+        # 3.find the best item in self.inventory that matches their_priority **can call get_best_by_category here**
+        #     3b. if no match:returns False
+        # 4.find the best item in other_vendor.inventory that matches their_priority **can call get_best_by_category here**
+        #     4.b.  if no match:returns False
+        # 5. swap the best items
+            # : can we call  swap_items(): here so that swap_best_by_category and swap_first_item can use it???
 
+        # return True
+        ...
 
-# ***helper function***
-def find_best_item():
-    ...
+    # ***helper functions***
+    # def find_best_item(self, category_or_invetory_list): #???
+    #     if len(category_or_invetory_list) == 0:
+    #         return None
+
+    #     best_item  = category_or_invetory_list[0]
+    #     for item in category_or_invetory_list:
+    #         if item.condition > best_item.condition:
+    #             best_item.condition = item.condition
+
+    #     return best_item
+        
+    
 
     
