@@ -266,3 +266,55 @@ def test_swap_best_by_category_no_other_match_is_false():
     # - That result is falsy
     # - That tai and jesse's inventories are the correct length
     # - That all the correct items are in tai and jesse's inventories
+
+def test_newest_item():
+    item_a = Clothing(age=10)
+    item_b = Decor(age=5)
+    item_c = Clothing(age=1)
+    item_d = Decor(age=25)
+    item_e = Clothing(age=7)
+    tai = Vendor(
+        inventory=[item_a, item_b, item_c, item_d, item_e]
+    )
+
+    newest_item = tai.get_newest_items()
+
+    assert newest_item == item_c
+
+def test_newest_item_returns_None_if_inventory_False():
+    tai = Vendor(
+        inventory=[]
+    )
+
+    result = tai.get_newest_items()
+
+    assert result == None
+
+def test_swaps_newest_items():
+    item_a = Decor(age=100)
+    item_b = Electronics(age=1)
+    item_c = Decor(age=50)
+    tai = Vendor(
+        inventory=[item_c, item_b, item_a]
+    )
+
+    item_d = Clothing(age=5)
+    item_e = Decor(age=60)
+    item_f = Clothing(age=50)
+    jesse = Vendor(
+        inventory=[item_f, item_e, item_d]
+    )
+
+    # Act
+    result = tai.swap_by_newest(
+        jesse)
+    
+
+    assert len(tai.inventory) == 3
+    assert len(jesse.inventory) == 3
+    assert item_a in tai.inventory
+    assert item_b in jesse.inventory
+    assert item_c in tai.inventory
+    assert item_d in tai.inventory
+    assert item_e in jesse.inventory
+    assert item_f in jesse.inventory

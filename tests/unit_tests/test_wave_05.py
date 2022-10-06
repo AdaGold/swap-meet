@@ -52,3 +52,10 @@ def test_items_have_condition_descriptions_that_are_the_same_regardless_of_type(
         assert item.condition_description() == one_condition_description
 
     assert one_condition_description != five_condition_description
+
+def test_condition_description_returns_None_if_condition_is_False():
+    item = Clothing(condition=None)
+
+    result = item.condition_description()
+
+    assert result == None
