@@ -19,12 +19,8 @@ class Vendor:
         return item
 
     def get_by_category(self, category):
-        items_list = []
-
-        for item in self.inventory:
-            if item.category == category: 
-                items_list.append(item)
-        
+        items_list = [item for item in self.inventory if item.category == category]
+                
         if items_list == []:
             return []
 
@@ -49,3 +45,6 @@ class Vendor:
         self.remove(self.inventory[0])
         vendor.remove(vendor.inventory[0])
         return True
+
+    def get_best_by_category(self, category):
+        pass 
