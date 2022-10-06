@@ -8,12 +8,23 @@ class Item:
         return f"Hello World!"
     
     def condition_description(self):
-        conditions = {
-            0: "You don't want this.",
-            1: "Anything is cheap enough.",
-            2: "It's OK.",
-            3: "No major issues.",
-            4: "Hardly worn and well taken care of.",
-            5: "Gonna go fast!"
-        }
+        # conditions = {
+        #     0: "You don't want this.",
+        #     1: "Anything is cheap enough.",
+        #     2: "It's OK.",
+        #     3: "No major issues.",
+        #     4: "Hardly worn and well taken care of.",
+        #     5: "Gonna go fast!"
+        # }
+        # return f"{conditions[self.condition]}"
+
+        conditions = [
+            "You don't want this.", 
+            "Anything is cheap enough.",
+            "It's OK.",
+            "No major issues.",
+            "Hardly worn and well taken care of.",
+            "Gonna go fast!"
+        ]
+
         return f"{conditions[self.condition]}"
