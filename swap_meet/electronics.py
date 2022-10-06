@@ -1,9 +1,9 @@
-#from item import Item
+from swap_meet.item import Item
 
-class Electronics():
+class Electronics(Item):
     
     def __init__(self, category = "Electronics", condition = 0):
-        #super().__init__(category = None, condition = 0)
+        super().__init__(category = None, condition = 0)
         self.category = category
         self.condition = condition
 
