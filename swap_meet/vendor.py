@@ -61,6 +61,24 @@ class Vendor:
         result = self.swap_items(other, my_best_by_category, their_best_by_category)
         return result
 
+    def get_newest():
+        pass
+    
+    def get_newest_by_category(self, category):
+        pass
+
+    def swap_newest(self, other):
+        pass
+
+    def swap_newest_by_category(self, other, my_priority, their_priority):
+        pass
+
+    #swap best by age and category?
+    #swap best: old/retro but good condition?
+
+    #More refactoring questions
+    #if we round the float, may we loose some info? 
+    # condition 3,7 and 3,8 will round into 4 making them the same
 
     
 
