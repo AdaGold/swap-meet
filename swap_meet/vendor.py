@@ -1,10 +1,12 @@
 from operator import itemgetter
+from swap_meet.item import Item
 
 
-class Vendor:
+class Vendor(Item):
     def __init__(self, inventory = None):
         if inventory is None:
             inventory = []
+        super().__init__(category = None, condition = 0)
         self.inventory = inventory
 
 
@@ -23,7 +25,6 @@ class Vendor:
                 
         if items_list == []:
             return []
-
         return items_list
 
     def swap_items(self, vendor, my_item, their_item):
@@ -47,4 +48,8 @@ class Vendor:
         return True
 
     def get_best_by_category(self, category):
-        pass 
+
+        best_item = max(self.get_by_category(category), key = lambda i : i.condition)
+        if best_item is None:
+            return None
+        return best_item 
