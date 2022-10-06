@@ -48,8 +48,11 @@ class Vendor(Item):
         return True
 
     def get_best_by_category(self, category):
-
-        best_item = max(self.get_by_category(category), key = lambda i : i.condition)
-        if best_item is None:
+        '''
+        Input: category of item
+        Output: item of best condition within that category
+        '''
+        if self.get_by_category(category) == []:
             return None
+        best_item = max(self.get_by_category(category), key = lambda i : i.condition)
         return best_item 
