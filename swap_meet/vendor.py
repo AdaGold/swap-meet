@@ -62,40 +62,16 @@ class Vendor:
         
         return best_item
 
-    def swap_best_by_category(self, other, my_priority, their_priority):#swaps the best item of certain categories with other_vendor
-        
+    def swap_best_by_category(self, other, my_priority, their_priority):
+        if not self.inventory or not other.inventory:
+            return False
+
         their_priority_item = other.get_best_by_category(my_priority)
+        if not their_priority_item:
+            return False
+
         my_priority_item = self.get_best_by_category(their_priority)
+        if not my_priority_item:
+            return False
+
         return self.swap_items(other, my_priority_item, their_priority_item)
-        """
-        other, which represents another Vendor instance to trade with
-        my_priority, which represents a category that the Vendor wants to receive
-        their_priority, which represents a category that other wants to receive
-        """
-        
-        # best item in self.inventory that matches their_priority is SWAPPED with the best item in other_vendor inventory that matches my_priority
-        # 1.my_priority
-        # 2.their_priority
-        # 3.find the best item in self.inventory that matches their_priority **can call get_best_by_category here**
-        #     3b. if no match:returns False
-        # 4.find the best item in other_vendor.inventory that matches their_priority **can call get_best_by_category here**
-        #     4.b.  if no match:returns False
-        # 5. swap the best items
-            # : can we call  swap_items(): here so that swap_best_by_category and swap_first_item can use it???
-
-        # return True
-        ...
-
-
-    # # helper_function
-    # def get_best_item(self, list_of_items):
-    #     if not list_of_items:
-    #         return None
-        
-    #     best_item = list_of_items[0]
-
-    #     for item in list_of_items:
-    #         if item.condition > best_item.condition:
-    #             best_item = item
-
-    #         return best_item
