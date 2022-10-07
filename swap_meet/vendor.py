@@ -40,4 +40,6 @@ class Vendor:
             return False
         my_first_item = self.inventory[0]
         their_first_item = friend_vendor.inventory[0]
-        return self.swap_items(friend_vendor, my_first_item, their_first_item)
+        is_swapped = self.swap_items(friend_vendor, my_first_item, their_first_item)
+        return is_swapped
+        
