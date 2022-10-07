@@ -31,6 +31,8 @@ class Vendor(Item):
         if my_item not in self.inventory or their_item not in vendor.inventory:
             return False
         
+        # I hard-coded this, but was curious about how this could be scaled-up.
+        # What would happen if this swap-meet went viral?
         self.add(their_item)
         self.remove(my_item)
         vendor.add(my_item)
@@ -38,17 +40,13 @@ class Vendor(Item):
         return True
 
     def swap_first_item(self, vendor):
-        if self.inventory == [] or vendor.inventory == []:
+        if len(self.inventory) == 0 or len(vendor.inventory) == 0:
             return False
         
         self.swap_items(vendor, self.inventory[0], vendor.inventory[0])
         return True
 
     def get_best_by_category(self, category):
-        '''
-        Input: category of item
-        Output: item of best condition within that category
-        '''
         if self.get_by_category(category) == []:
             return None
         best_item = max(self.get_by_category(category), key = lambda i : i.condition)
@@ -57,7 +55,7 @@ class Vendor(Item):
     def swap_best_by_category(self, other, my_priority, their_priority):
         '''
         Input: other (for other vendor), my_priority (category vendor prefers),and their_priority (category other vendor prefers) 
-        Output: returns True if both Vendor and other Vendor have items in prioritized by their respective swappers
+        Output: Returns True if swap is successful. Returns False if swap is unsuccessful
         '''
         vendor_best_item = self.get_best_by_category(their_priority)
         other_best_item = other.get_best_by_category(my_priority)
