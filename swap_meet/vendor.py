@@ -1,6 +1,5 @@
 from swap_meet.item import Item
 
-
 class Vendor:
     def __init__(self, inventory=None):
         if inventory is None:
@@ -9,20 +8,16 @@ class Vendor:
 
 
     def add(self, item):
-        
         self.inventory.append(item)
-
         return item
 
 
     def remove(self, item):
-        
         if item in self.inventory:
             self.inventory.remove(item)
+            return item
         else:
             return False
-        
-        return item
 
     def get_by_category(self, category):
         items = []
@@ -39,3 +34,10 @@ class Vendor:
         friend_vendor.remove(their_item)
         self.add(their_item)
         return True
+    
+    def swap_first_item(self, friend_vendor):
+        if self.inventory == [] or friend_vendor.inventory == []:
+            return False
+        my_first_item = self.inventory[0]
+        their_first_item = friend_vendor.inventory[0]
+        return self.swap_items(friend_vendor, my_first_item, their_first_item)
