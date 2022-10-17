@@ -27,11 +27,14 @@ class Vendor:
     def get_by_category(self, category):
         """given a category, return a list of all items in inventory
         that have that as their attribute category."""
-        items_in_category = []
-        #iterate through inventory to append items with the given category
-        for item in self.inventory:
-            if item.category == category:
-                items_in_category.append(item)
+        # items_in_category = []
+        # #iterate through inventory to append items with the given category
+        # for item in self.inventory:
+        #     if item.category == category:
+        #         items_in_category.append(item)
+
+        items_in_category = [item for item in self.inventory if item.category == category]
+
         return items_in_category
 
     def swap_items(self, swapping_vendor, my_item, their_item):
@@ -62,12 +65,8 @@ class Vendor:
         """this will return the best item a vendor has in a given category"""
         #In the case of a tie, it will return the LAST instance of this item.
         best_item = None
-        items_in_category = []
-        for item in self.inventory:
-            if item.category == category:
-                items_in_category.append(item)
-                #I think there's a faster way to do this, in one loop.
-                #for now, I'm just going to get it working.
+        items_in_category = self.get_by_category(category)
+    
         if items_in_category:
             best_item = items_in_category[0]
             for cat_item in items_in_category:
