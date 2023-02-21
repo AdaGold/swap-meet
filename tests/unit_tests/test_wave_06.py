@@ -1,8 +1,44 @@
 import pytest
+from swap_meet.item import Item
 from swap_meet.vendor import Vendor
 from swap_meet.clothing import Clothing
 from swap_meet.decor import Decor
 from swap_meet.electronics import Electronics
+
+#@pytest.mark.skip
+def test_get_items_by_category():
+    item_a = Clothing()
+    item_b = Electronics()
+    item_c = Clothing()
+    item_d = Decor()
+    item_e = Item()
+    vendor = Vendor(
+        inventory=[item_a, item_b, item_c, item_d, item_e]
+    )
+
+    items = vendor.get_by_category("Clothing")
+
+    assert len(items) == 2
+    assert item_a in items
+    assert item_c in items
+
+#@pytest.mark.skip
+def test_get_no_matching_items_by_category():
+    item_a = Clothing()
+    item_b = Item()
+    item_c = Decor()
+    vendor = Vendor(
+        inventory=[item_a, item_b, item_c]
+    )
+
+    items = vendor.get_by_category("Electronics")
+
+    assert len(items) == 0
+
+    # raise Exception("Complete this test according to comments below.")
+    # *********************************************************************
+    # ****** Complete Assert Portion of this test **********
+    # *********************************************************************
 
 #@pytest.mark.skip
 def test_best_by_category():
@@ -17,7 +53,7 @@ def test_best_by_category():
 
     best_item = tai.get_best_by_category("Clothing")
 
-    assert best_item.category == "Clothing"
+    assert best_item.get_category() == "Clothing"
     assert best_item.condition == pytest.approx(4.0)
 
 #@pytest.mark.skip
@@ -47,7 +83,7 @@ def test_best_by_category_with_duplicates():
     best_item = tai.get_best_by_category("Clothing")
 
     # Assert
-    assert best_item.category == "Clothing"
+    assert best_item.get_category() == "Clothing"
     assert best_item.condition == pytest.approx(4.0)
 
 #@pytest.mark.skip
@@ -71,7 +107,7 @@ def test_swap_best_by_category():
 
     # Act
     result = tai.swap_best_by_category(
-        other=jesse,
+        other_vendor=jesse,
         my_priority="Clothing",
         their_priority="Decor"
     )
@@ -115,7 +151,7 @@ def test_swap_best_by_category_reordered():
 
     # Act
     result = tai.swap_best_by_category(
-        other=jesse,
+        other_vendor=jesse,
         my_priority="Clothing",
         their_priority="Decor"
     )
@@ -154,7 +190,7 @@ def test_swap_best_by_category_no_inventory_is_false():
     )
 
     result = tai.swap_best_by_category(
-        other=jesse,
+        other_vendor=jesse,
         my_priority="Clothing",
         their_priority="Decor"
     )
@@ -180,7 +216,7 @@ def test_swap_best_by_category_no_other_inventory_is_false():
     )
 
     result = tai.swap_best_by_category(
-        other=jesse,
+        other_vendor=jesse,
         my_priority="Decor",
         their_priority="Clothing"
     )
@@ -211,7 +247,7 @@ def test_swap_best_by_category_no_match_is_false():
 
     # Act
     result = tai.swap_best_by_category(
-        other=jesse,
+        other_vendor=jesse,
         my_priority="Clothing",
         their_priority="Clothing"
     )
@@ -253,7 +289,7 @@ def test_swap_best_by_category_no_other_match_is_false():
 
     # Act
     result = tai.swap_best_by_category(
-        other=jesse,
+        other_vendor=jesse,
         my_priority="Electronics",
         their_priority="Decor"
     )

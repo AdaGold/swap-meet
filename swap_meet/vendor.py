@@ -23,18 +23,26 @@ class Vendor:
                 filtered_list.append(item)
         return filtered_list
 
-    def swap_items(self, other, my_item, their_item):
+    def get_by_id(self, id):
+        result = None
+        for item in self.inventory:
+            if item.id == id:
+                result = item
 
-        if my_item not in self.inventory or their_item not in other.inventory:
+        return result
+
+    def swap_items(self, other_vendor, my_item, their_item):
+
+        if my_item not in self.inventory or their_item not in other_vendor.inventory:
             return False
 
         #adding and removing to self
         self.remove(my_item)
         self.add(their_item)
 
-        #adding and removing to other
-        other.remove(their_item)
-        other.add(my_item)
+        #adding and removing to other_vendor
+        other_vendor.remove(their_item)
+        other_vendor.add(my_item)
 
         return True
 
@@ -42,7 +50,7 @@ class Vendor:
         if len(self.inventory) == 0 or len(other_vendor.inventory) == 0:
             return False
 
-        # get first item   
+        # get first item
         my_first_item = self.inventory[0]
         other_first_item = other_vendor.inventory[0]
 
@@ -66,13 +74,13 @@ class Vendor:
 
         return best_item
 
-    def swap_best_by_category(self, other, my_priority, their_priority):
+    def swap_best_by_category(self, other_vendor, my_priority, their_priority):
 
         my_best_item = self.get_best_by_category(their_priority)
-        their_best_item = other.get_best_by_category(my_priority)
+        their_best_item = other_vendor.get_best_by_category(my_priority)
 
         if their_best_item == None or my_best_item == None:
             return False
 
-        self.swap_items(other, my_best_item, their_best_item)
+        self.swap_items(other_vendor, my_best_item, their_best_item)
         return True
