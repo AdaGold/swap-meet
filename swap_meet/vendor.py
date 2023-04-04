@@ -35,3 +35,19 @@ class Vendor:
         self.add(their_item)
 
         return True
+    
+    def swap_first_item(self, other_vendor):
+
+        if self.inventory == [] or other_vendor.inventory == []:
+            return False
+        
+        first_item_self_inv = self.inventory[0]
+        first_item_friend_inv = other_vendor.inventory[0]
+
+        self.remove(first_item_self_inv)
+        self.add(first_item_friend_inv)
+
+        other_vendor.remove(first_item_friend_inv)
+        other_vendor.add(first_item_self_inv)
+
+        return True
