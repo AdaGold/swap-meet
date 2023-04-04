@@ -45,3 +45,20 @@ class Vendor:
             )
             return True
         return False
+    
+#Wave6
+    def get_by_category(self, category):
+        return [item for item in self.inventory \
+            if item.get_category() == category]
+    
+    def get_best_by_category(self, category):
+        items = self.get_by_category(category)
+        return max(items, default=None, key=lambda item: item.condition)
+    
+    def swap_best_by_category(self, other_vendor, my_priority, their_priority):
+        my_best = self.get_best_by_category(their_priority)
+        their_best = other_vendor.get_best_by_category(my_priority)
+        if my_best and their_best:
+            self.swap_items(other_vendor, my_best, their_best)
+            return True
+        return False
