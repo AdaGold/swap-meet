@@ -8,4 +8,7 @@ class Item:
             self.id = id
             
     def get_category(self):
-        return "Item"
+        return self.__class__.__name__
+
+    def __str__(self):
+        return f"An object of type {self.get_category()} with id {self.id}."
