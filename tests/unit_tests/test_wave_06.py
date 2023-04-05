@@ -40,7 +40,7 @@ def test_get_no_matching_items_by_category():
     # ****** Complete Assert Portion of this test **********
     # *********************************************************************
 
-@pytest.mark.skip
+
 def test_best_by_category():
     item_a = Clothing(condition=2.0)
     item_b = Decor(condition=2.0)
@@ -56,7 +56,7 @@ def test_best_by_category():
     assert best_item.get_category() == "Clothing"
     assert best_item.condition == pytest.approx(4.0)
 
-@pytest.mark.skip
+
 def test_best_by_category_no_matches_is_none():
     item_a = Decor(condition=2.0)
     item_b = Decor(condition=2.0)

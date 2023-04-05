@@ -58,3 +58,12 @@ class Vendor:
             if category == item.get_category():
                 items_same_category.append(item)
         return items_same_category
+    
+    def get_best_by_category(self, category):
+        max_condition = 0
+        max_item = None
+        for item in self.inventory:
+            if max_condition < item.condition and category == item.get_category():
+                max_condition = item.condition 
+                max_item = item
+        return max_item
