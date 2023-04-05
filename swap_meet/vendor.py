@@ -29,11 +29,11 @@ class Vendor:
         # my_item = the item this Vendor instance plans to give
         # their_item = item the friend Vendor plans to give
         
-        if my_item not in self.inventory or their_item not in other_vendor:
-            return False
-        else:
+        if my_item in self.inventory or their_item in other_vendor:
             self.remove(my_item)
             self.add(their_item)
             other_vendor.remove(their_item)
             other_vendor.add(my_item)
             return True
+        else:
+            return False
