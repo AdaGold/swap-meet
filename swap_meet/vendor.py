@@ -25,7 +25,7 @@ class Vendor:
 
     def swap_items(self, other_vendor, my_item, their_item):
 
-        if my_item not in self.inventory or their_item not in other_vendor.inventory:
+        if self.get_by_id(my_item.id) == None or other_vendor.get_by_id(their_item.id) == None:
             return False
 
         self.remove(my_item)
@@ -44,13 +44,7 @@ class Vendor:
         first_item_self_inv = self.inventory[0]
         first_item_friend_inv = other_vendor.inventory[0]
 
-        self.remove(first_item_self_inv)
-        self.add(first_item_friend_inv)
-
-        other_vendor.remove(first_item_friend_inv)
-        other_vendor.add(first_item_self_inv)
-
-        return True
+        return self.swap_items(other_vendor, first_item_self_inv, first_item_friend_inv)
     
     def get_by_category(self, category):
         items_same_category = []
@@ -67,3 +61,12 @@ class Vendor:
                 max_condition = item.condition 
                 max_item = item
         return max_item
+    
+    def swap_best_by_category(self,other_vendor, my_priority, their_priority):
+
+        other_vendor_best_item = self.get_best_by_category(their_priority)
+        self_best_item = other_vendor.get_best_by_category(my_priority)
+
+        if other_vendor_best_item == None or self_best_item == None:
+            return False
+        return self.swap_items(other_vendor, other_vendor_best_item, self_best_item)
