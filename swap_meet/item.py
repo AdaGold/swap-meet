@@ -8,10 +8,7 @@ class Item:
             self.id = id
 
     def get_category(self):
-        return Item.__name__
-    
-    def get_category(self, item):
-        return item.__name__
+        return self.__class__.__name__
     
     def __str__(self):
-        return f"An object of type Item with id {self.id}."
+        return f"An object of type {self.get_category()} with id {self.id}."
