@@ -1,10 +1,7 @@
 #Wave 1
 class Vendor:
     def __init__(self, inventory = None):
-        if inventory is None: 
-            self.inventory = []
-        else:
-            self.inventory = inventory
+        self.inventory = inventory if inventory is not None else []
 
     def add(self, item):
         self.inventory.append(item)
@@ -14,14 +11,15 @@ class Vendor:
         if item in self.inventory:
             self.inventory.remove(item)
             return item
-        else: 
-            return False
+
+        return False
         
 #Wave2
     def get_by_id(self, item_id):
         for item in self.inventory:
             if item.id == item_id:
                 return item
+
         return None
 
 #Wave3
@@ -32,8 +30,8 @@ class Vendor:
             self.add(their_item)
             other_vendor.remove(their_item)
             return True
-        else:
-            return False
+        
+        return False
         
 #Wave4
     def swap_first_item(self, other_vendor):
@@ -44,12 +42,13 @@ class Vendor:
                 other_vendor.inventory[0]
             )
             return True
+
         return False
     
 #Wave6
     def get_by_category(self, category):
-        return [item for item in self.inventory \
-            if item.get_category() == category]
+        inv = self.inventory.copy()
+        return list(filter(lambda item: item.get_category() == category, inv))
     
     def get_best_by_category(self, category):
         items = self.get_by_category(category)
@@ -58,7 +57,9 @@ class Vendor:
     def swap_best_by_category(self, other_vendor, my_priority, their_priority):
         my_best = self.get_best_by_category(their_priority)
         their_best = other_vendor.get_best_by_category(my_priority)
+
         if my_best and their_best:
             self.swap_items(other_vendor, my_best, their_best)
             return True
+
         return False

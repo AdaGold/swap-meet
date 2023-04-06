@@ -21,9 +21,9 @@ class Item:
         elif self.condition <=3:
             return "It's alright"
         elif self.condition <=4:
-            return "Ok"
+            return "Pretty good!"
         elif self.condition <=5:
             return "Practically new"
         else:
-            return "Invalid"
+            return "Invalid condition rating."
         

@@ -6,5 +6,6 @@ class Electronics(Item):
         self.type = type
 
     def __str__(self):
-        return f"An object of type {self.get_category()} with id {self.id}. This is a {self.type} device."
+        return f"An object of type {self.get_category()} with id {self.id}." \
+                f" This is a {self.type} device."
 
