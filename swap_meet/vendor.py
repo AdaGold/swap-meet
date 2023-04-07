@@ -2,10 +2,7 @@
 
 class Vendor:
     def __init__(self, inventory = None):
-        if inventory == None:
-            self.inventory = []
-        else:
-            self.inventory = inventory
+        self.inventory = [] if inventory is None else inventory
 
 
     def add(self, item):
@@ -39,43 +36,25 @@ class Vendor:
     
 
     def swap_first_item(self, other_vendor):
-        if not self.inventory or not other_vendor.inventory:
+        try:
+            return self.swap_items(other_vendor, self.inventory[0], other_vendor.inventory[0])
+        except IndexError:
             return False
-        else:
-            my_first_item = self.inventory[0]
-            their_first_item = other_vendor.inventory[0]
-            other_vendor.add(my_first_item)
-            self.remove(my_first_item)
-            self.add(their_first_item)
-            other_vendor.remove(their_first_item)
-            return True
         
 
     def get_by_category(self, category):
-        category_inventory = []
-        for item in self.inventory:
-            if item.get_category() == category:
-                category_inventory.append(item)
-        return category_inventory
+        return [item for item in self.inventory if item.get_category() == category]
 
 
     def get_best_by_category(self, category):
         category_selection = self.get_by_category(category)
-        if not category_selection:
+        try:
+            return max(category_selection, key=lambda item: item.condition)
+        except ValueError:
             return None
-        else:
-            highest_condition = category_selection[0]
-            for item in category_selection:
-                if item.condition > highest_condition.condition:
-                    highest_condition = item
-            return highest_condition
 
     
     def swap_best_by_category(self, other_vendor, my_priority, their_priority):
         my_best_item = self.get_best_by_category(their_priority)
         their_best_item = other_vendor.get_best_by_category(my_priority)
-        if my_best_item and their_best_item:
-            self.swap_items(other_vendor, my_best_item, their_best_item)
-            return True
-        else:
-            return False
+        return self.swap_items(other_vendor, my_best_item, their_best_item)
