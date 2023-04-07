@@ -4,7 +4,7 @@ import uuid
 # print(unique_id)
 
 class Item:
-    def __init__(self, id = None):
+    def __init__(self, id = None, condition = 0):
         if id is None:
             id = int(uuid.uuid4())
         self.id = id

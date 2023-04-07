@@ -1,7 +1,7 @@
 from .item import Item
 
 class Clothing(Item):
-    def __init__(self, id = None, fabric = "Unknown"):
+    def __init__(self, id = None, fabric = "Unknown", condition = 0):
         super().__init__(id)
         self.fabric = fabric
     
