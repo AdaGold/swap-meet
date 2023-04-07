@@ -293,3 +293,36 @@ def test_swap_best_by_category_no_other_match_is_false():
     # - That result is falsy
     # - That tai and jesse's inventories are the correct length
     # - That all the correct items are in tai and jesse's inventories
+
+
+
+    # UNIT TEST FOR AGE
+
+def test_swap__by_newest():
+    # Arrange
+    # me
+    item_a = Item(age=4)
+    item_b = Decor(age=1)
+    item_c = Electronics(age=2)
+    fatimah = Vendor(
+        inventory=[item_a, item_b, item_c]
+    )
+
+    item_d = Clothing(age=1)
+    item_e = Decor(age=3)
+    jolie = Vendor(
+        inventory=[item_d, item_e]
+    )
+
+    result = fatimah.swap_items(jolie, item_b, item_d)
+
+    assert len(fatimah.inventory) == 3
+    assert item_b not in fatimah.inventory
+    assert item_a in fatimah.inventory
+    assert item_c in fatimah.inventory
+    assert item_d in fatimah.inventory
+    assert len(jolie.inventory) == 2
+    assert item_d not in jolie.inventory
+    assert item_e in jolie.inventory
+    assert item_b in jolie.inventory
+    assert result
