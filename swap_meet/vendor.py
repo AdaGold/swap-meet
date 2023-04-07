@@ -38,13 +38,21 @@ class Vendor:
     #         other_vendor.inventory.append(my_item)
     #         return True
 
+        # if my_item in self.inventory and their_item in other_vendor.inventory:
+        #     self.inventory.remove(my_item)
+        #     self.inventory.append(their_item)
+        #     other_vendor.inventory.remove(their_item)
+        #     other_vendor.inventory.append(my_item)
+        #     return True
+        # return False
+    
         if my_item in self.inventory and their_item in other_vendor.inventory:
-            self.inventory.remove(my_item)
-            self.inventory.append(their_item)
-            other_vendor.inventory.remove(their_item)
-            other_vendor.inventory.append(my_item)
+            self.remove(my_item)
+            self.add(their_item)
+            other_vendor.remove(their_item)
+            other_vendor.add(my_item)
             return True
-        return False
+        return False    
     
     def swap_first_item(self, other_vendor):
         if not self.inventory or not other_vendor.inventory:
