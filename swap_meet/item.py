@@ -16,16 +16,13 @@ class Item:
         return f"An object of type {self.get_category()} with id {self.id}."
     
     def condition_description(self):
-        match self.condition:
-            case 1:
-                return "Heavily used"
-            case 2:
-                return "Regular used"
-            case 3:
-                return "Used"
-            case 4:
-                return "Almost new"
-            case 5:
-                return "Like new"
-            case _:
-                return "Default"
+        if self.condition == 1:
+            return "Heavily used"
+        if self.condition == 2:
+            return "Regular used"
+        if self.condition == 3:
+            return "Used"
+        if self.condition == 4:
+            return "Almost new"
+        if self.condition == 5:
+            return "Like new"
