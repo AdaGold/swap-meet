@@ -6,8 +6,9 @@ class Decor(Item):
         self.width = width
         self.length = length
     
-    def get_category(self):
-        return "Decor"
+    # Initially wrote get_category instance method to return "Decor". However, the code would be cleaner
+    # if I removed this instance method altogether, referenced the __str__ method instance in the Item class,
+    # and edited the return string in __str__ to remove any redundancy.
     
     def __str__(self):
-        return f"An object of type {self.get_category()} with id {self.id}. It takes up a {self.width} by {self.length} sized space."
+        return f"{super().__str__()} It takes up a {self.width} by {self.length} sized space."

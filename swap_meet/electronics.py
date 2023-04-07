@@ -5,9 +5,10 @@ class Electronics(Item):
         super().__init__(id, condition)
         self.type = type
 
-    def get_category(self):
-        return "Electronics"
+    # Initially wrote get_category instance method to return "Electronics". However, the code would be cleaner
+    # if I removed this instance method altogether, referenced the __str__ method instance in the Item class,
+    # and edited the return string in __str__ to remove any redundancy.
 
     def __str__(self):
-        return f"An object of type {self.get_category()} with id {self.id}. This is a {self.type} device."
+        return f"{super().__str__()} This is a {self.type} device."
 
